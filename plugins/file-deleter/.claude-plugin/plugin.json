@@ -1,0 +1,12 @@
+{
+  "name": "file-deleter",
+  "version": "1.0.0",
+  "description": "Safe file deletion system that moves files to .deleted/ trash folder instead of permanently deleting them. Includes PreToolUse hook to block rm commands and redirect to safe deletion skill.",
+  "author": {
+    "name": "Mike Eckert"
+  },
+  "license": "MIT",
+  "skills": [
+    "./skills/file-deleter"
+  ]
+}

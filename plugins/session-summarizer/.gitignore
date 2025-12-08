@@ -1,0 +1,13 @@
+# Local development
+node_modules/
+*.log
+
+# Test files
+test-transcripts/
+.claude/summaries/
+.claude/session-summary.md
+.claude/transcript.txt
+
+# OS files
+.DS_Store
+Thumbs.db

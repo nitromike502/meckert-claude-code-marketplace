@@ -1,0 +1,5 @@
+{
+  "name": "cc-validator",
+  "version": "0.1.0",
+  "description": "Validate and fix YAML frontmatter in Claude Code agent and command files"
+}

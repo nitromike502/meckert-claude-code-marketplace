@@ -1,0 +1,10 @@
+{
+  "name": "session-summarizer",
+  "version": "0.1.0",
+  "description": "Summarize Claude Code sessions for seamless continuation across context windows. Maintains session history and enables work resumption.",
+  "author": {
+    "name": "Mike Eckert"
+  },
+  "license": "MIT",
+  "keywords": ["session", "summarization", "context", "continuity", "workflow"]
+}

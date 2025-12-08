@@ -1,0 +1,33 @@
+{
+  "name": "local-marketplace",
+  "owner": {
+    "name": "Mike Eckert",
+    "email": "nitromike502@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "file-deleter",
+      "version": "1.0.0",
+      "description": "Safe file deletion system that moves files to .deleted/ trash folder instead of permanently deleting them. Includes PreToolUse hook to block rm commands and redirect to safe deletion skill.",
+	  "category": "workflow",
+      "source": "./plugins/file-deleter",
+	  "tags": ["filesystem", "archiving", "security"]
+    },
+	{
+      "name": "session-summarizer",
+      "version": "0.1.0",
+      "description": "Summarize Claude Code sessions for seamless continuation",
+      "source": "./plugins/session-summarizer",
+      "category": "workflow",
+      "tags": ["session", "context", "continuity"]
+    },
+    {
+      "name": "cc-validator",
+      "version": "0.1.0",
+      "description": "Validate and fix YAML frontmatter in Claude Code agent and command files",
+      "source": "./plugins/cc-validator",
+      "category": "development",
+      "tags": ["validation", "frontmatter", "plugin-dev", "agents", "commands"]
+    }
+  ]
+}
