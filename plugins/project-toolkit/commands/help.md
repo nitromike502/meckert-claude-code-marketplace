@@ -1,9 +1,11 @@
 ---
+name: help
 description: Get help using the Project Toolkit plugin
 arguments:
   - name: topic
     description: "Optional topic: agents, commands, swarm, workflow, or leave blank for overview"
     required: false
+requires_subagent: false
 ---
 
 # Project Toolkit Help

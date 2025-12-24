@@ -2,6 +2,7 @@
 name: ba
 description: Business Analyst - Solution features using deep reasoning and specialized subagents
 color: green
+requires_subagent: true
 ---
 
 # Business Analyst Command

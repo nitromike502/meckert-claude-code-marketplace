@@ -1,3 +1,9 @@
+---
+name: project-status
+description: Check project status and recommend next tickets to work on
+requires_subagent: true
+---
+
 # Project Status Check
 # Development Assessment & Intelligent Ticket Selection
 

@@ -4,6 +4,7 @@ description: Select development strategy for current session (approved, rapid, o
 allowed-tools:
   - Read
   - Write
+requires_subagent: false
 ---
 
 # Development Strategy Selection

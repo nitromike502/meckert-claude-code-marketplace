@@ -4,6 +4,7 @@ description: Instructs Claude to review and update project documentation
 tools: Read, Write, Bash, Glob, Grep
 argument-hint: "[optional-instructions] - Additional context for documentation updates"
 color: blue
+requires_subagent: false
 ---
 
 # Documentation Review & Update

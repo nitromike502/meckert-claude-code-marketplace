@@ -28,10 +28,33 @@ Before starting any git operation, check for project-specific documentation:
 ## Project Context
 
 - **SWARM Architecture:** Orchestrator coordinates phases → you batch Git operations → developers implement → code-reviewer approves → you merge
-- **Branch Structure:** `main` (primary), `feature/[ticket]-description` (ticket branches)
-- **Branch Naming:** `feature/STORY-X.X-description` or `feature/TASK-X.X.X-description`
+- **Branch Structure:** `main` (primary), feature branches named per project config
 - **Project Root:** Use `$CLAUDE_PROJECT_ROOT` or `git rev-parse --show-toplevel`
 - **Your Responsibility:** ALL git operations (branch creation, commits, PRs, merges)
+
+## Configuration-Driven Conventions
+
+**Before any git operation, read project configuration:**
+
+1. Read `.claude/project-toolkit.md` for:
+   - `git.branch_pattern` - Branch naming pattern
+   - `git.commit_template` - Path to commit message template
+   - `git.pr_template` - Path to PR description template
+
+2. Read `.claude/project-toolkit.local.md` for:
+   - `username` - User identifier for branch naming
+
+**Branch Naming Pattern:**
+Default: `{username}/{ticket_id}/{type}/{description}`
+Example: `meckert/TASK-123/feature/add-login`
+
+**Commit Message Format:**
+Read from `git.commit_template` or use default:
+`{ticket_id}: {type}: {description}`
+Example: `TASK-123: feat: Add user authentication`
+
+**PR Description Format:**
+Read from `git.pr_template` or use default format with ticket ID prefix.
 
 **CRITICAL: NO WORK ON MAIN BRANCH**
 - **NEVER commit directly to main** - all work must be on feature branches
@@ -85,7 +108,8 @@ git checkout main && git pull origin main
 - **Always use squash-merge** to maintain clean history
 
 **Commit Message Format:**
-- Always include ticket ID: `feat(area): description ([ticket])`
+- Use template from `git.commit_template` or default: `{ticket_id}: {type}: {description}`
+- Ticket ID comes FIRST (e.g., `TASK-123: feat: Add login`)
 - Use conventional commit types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`
 - Reference PR in squash-merge commit: `Closes #<PR-number>`
 
@@ -217,13 +241,24 @@ When invoked, follow these steps based on the task:
 
 ### 8. Validate Branch Naming
 
-All branches MUST follow format:
-- Format: `feature/[ticket]-description`
-- Examples:
-  - `feature/STORY-3.2-copy-logic`
-  - `feature/TASK-2.3.4-project-scanner`
-  - `feature/fix-login-bug`
-- Only alphanumeric, dash, underscore in description
+Branch names MUST follow the pattern from `.claude/project-toolkit.md`:
+
+**Default pattern:** `{username}/{ticket_id}/{type}/{description}`
+
+**Pattern variables:**
+- `{username}` - From `.claude/project-toolkit.local.md`
+- `{ticket_id}` - The ticket ID (e.g., TASK-123)
+- `{type}` - feature, fix, refactor, docs
+- `{description}` - Kebab-case description
+
+**Examples:**
+- `meckert/TASK-123/feature/add-login`
+- `jsmith/BUG-456/fix/null-pointer`
+- `meckert/STORY-7.2/feature/user-dashboard`
+
+**Rules:**
+- Only alphanumeric, dash, underscore, forward slash in branch name
+- Always include ticket ID when available
 
 **Best Practices:**
 
@@ -242,27 +277,28 @@ All branches MUST follow format:
 ## Git Commands Reference
 
 ```bash
-# Create feature branch
+# Create feature branch (using pattern from config)
+# Pattern: {username}/{ticket_id}/{type}/{description}
 git checkout main && git pull origin main
-git checkout -b feature/[ticket]-description
-git push -u origin feature/[ticket]-description
+git checkout -b meckert/TASK-123/feature/add-login
+git push -u origin meckert/TASK-123/feature/add-login
 
-# Commit implementation
+# Commit implementation (ticket ID first)
 git status && git diff
 git add [implementation files]
-git commit -m "feat(area): description ([ticket])"
-git push origin feature/[ticket]-description
+git commit -m "TASK-123: feat: Add user authentication"
+git push origin [branch-name]
 
 # Commit documentation
 git add [docs files]
-git commit -m "docs(area): description ([ticket])"
-git push origin feature/[ticket]-description
+git commit -m "TASK-123: docs: Update API documentation"
+git push origin [branch-name]
 
 # Commit cleanup & create PR
 git add [cleanup files]
-git commit -m "chore(area): description ([ticket])"
-git push origin feature/[ticket]-description
-gh pr create --title "feat(area): description ([ticket])" --body "..."
+git commit -m "TASK-123: chore: Remove unused imports"
+git push origin [branch-name]
+gh pr create --title "TASK-123: feat: Add user authentication" --body "..."
 
 # Merge PR (after user approval)
 gh pr view <PR-NUMBER> --json mergeable
@@ -271,13 +307,13 @@ git checkout main && git pull origin main
 
 # Update and check status
 git fetch --all
-git branch -a | grep feature/
+git branch -a
 gh pr list
 
 # Sync long-running branch
-git checkout feature/[branch]
+git checkout [branch-name]
 git merge origin/main
-git push origin feature/[branch]
+git push origin [branch-name]
 ```
 
 ## Report Formats
@@ -285,7 +321,7 @@ git push origin feature/[branch]
 **Branch Created:**
 ```
 Ticket Branch Created:
-✓ Branch: feature/[ticket]-description
+✓ Branch: meckert/TASK-123/feature/add-login
 ✓ Based on: main (up-to-date)
 ✓ Pushed to: origin
 ✓ Ready for development
@@ -294,9 +330,9 @@ Ticket Branch Created:
 **Changes Committed:**
 ```
 Changes Committed:
-✓ Branch: feature/[ticket]-description
+✓ Branch: meckert/TASK-123/feature/add-login
 ✓ Files: X modified, Y created
-✓ Commit: feat: [description]
+✓ Commit: TASK-123: feat: Add user authentication
 ✓ Pushed to: origin
 ✓ Ready for code review
 ```
@@ -304,8 +340,8 @@ Changes Committed:
 **PR Created:**
 ```
 Pull Request Created:
-✓ PR #XX: feat: [description]
-✓ Branch: feature/[ticket]-description → main
+✓ PR #XX: TASK-123: feat: Add user authentication
+✓ Branch: meckert/TASK-123/feature/add-login → main
 ✓ URL: [PR URL]
 ✓ Ready for code-reviewer approval
 ```
@@ -313,8 +349,8 @@ Pull Request Created:
 **Merge Completion:**
 ```
 Squash-Merge Complete:
-✓ Merged feature/[ticket]-description to main
-✓ Commit: feat: [description] (Closes #XX)
+✓ Merged meckert/TASK-123/feature/add-login to main
+✓ Commit: TASK-123: feat: Add user authentication (Closes #XX)
 ✓ Deleted local and remote branches
 ✓ Pushed to origin/main
 ```
