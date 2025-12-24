@@ -23,7 +23,8 @@ Before starting any testing work, check for project-specific documentation:
    - `${CLAUDE_PLUGIN_ROOT}/guides/TESTING-GUIDE.md`
    - `${CLAUDE_PLUGIN_ROOT}/guides/TEST-PATTERNS-REFERENCE.md`
 
-3. **Check for settings:**
+3. **Check for project settings:**
+   - `.claude/project-toolkit.md` for shared project configuration
    - `.claude/project-toolkit.local.md` for project-specific configuration (test frameworks)
 
 ## Integration with SWARM Workflow (Phase 3)

@@ -17,8 +17,8 @@ The user ran `/help` with topic: `$ARGUMENTS`
 ## Plugin Overview
 
 Project Toolkit is a multi-agent development workflow plugin that provides:
-- **7 Slash Commands** for common workflows
-- **13 Specialized Agents** for different development tasks
+- **8 Slash Commands** for common workflows
+- **14 Specialized Agents** for different development tasks
 - **10 Workflow Guides** documenting patterns and best practices
 - **Templates** for project configuration and session tracking
 
@@ -26,6 +26,7 @@ Project Toolkit is a multi-agent development workflow plugin that provides:
 
 | Command | Purpose |
 |---------|---------|
+| `/setup` | Configure project-toolkit for your project (run first!) |
 | `/swarm TASK-ID` | Execute full development workflow for a ticket |
 | `/swarm TASK-1 TASK-2` | Execute multiple tickets in parallel (git worktrees) |
 | `/ba "description"` | Business analysis with deep reasoning |
@@ -77,10 +78,20 @@ SWARM (Specialized Workflow with Autonomous Resource Management) is the core orc
 ## Getting Started
 
 1. Add plugin to `.claude/settings.json`
-2. Copy `templates/project-toolkit.local.md` to `.claude/`
-3. Configure project settings
-4. Run `/project-status` to see what to work on
-5. Use `/swarm TASK-ID` to start development
+2. Run `/setup` to configure the plugin for your project
+3. Run `/project-status` to see what to work on
+4. Use `/swarm TASK-ID` to start development
+
+## Configuration Files
+
+Project-toolkit uses two configuration files:
+
+| File | Purpose | Committed? |
+|------|---------|------------|
+| `.claude/project-toolkit.md` | Shared project config (tech stack, conventions) | Yes |
+| `.claude/project-toolkit.local.md` | Personal preferences (dev strategy) | No (gitignore) |
+
+Run `/setup` to create these automatically, or copy from `templates/`.
 
 ## Documentation Locations
 

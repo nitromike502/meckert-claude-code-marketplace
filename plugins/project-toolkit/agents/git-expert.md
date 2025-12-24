@@ -21,7 +21,8 @@ Before starting any git operation, check for project-specific documentation:
 2. **Fall back to plugin guides:**
    - `${CLAUDE_PLUGIN_ROOT}/guides/GIT-WORKFLOW.md`
 
-3. **Check for settings:**
+3. **Check for project settings:**
+   - `.claude/project-toolkit.md` for shared project configuration
    - `.claude/project-toolkit.local.md` for project-specific configuration
 
 ## Project Context

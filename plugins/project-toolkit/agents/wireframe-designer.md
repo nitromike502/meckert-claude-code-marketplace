@@ -40,6 +40,7 @@ Before starting design work, check for project-specific documentation:
    - Existing design docs in `docs/wireframes/`
 
 2. **Check for settings:**
+   - `.claude/project-toolkit.md` for shared project configuration
    - `.claude/project-toolkit.local.md` for project-specific configuration (tech stack, frontend framework)
 
 ## Instructions

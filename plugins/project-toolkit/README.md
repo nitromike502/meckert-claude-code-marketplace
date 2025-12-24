@@ -14,7 +14,7 @@ Project Toolkit provides a complete development team of specialized AI agents, w
 
 ## Features
 
-### Agents (13)
+### Agents (14)
 
 | Agent | Description |
 |-------|-------------|
@@ -32,16 +32,17 @@ Project Toolkit provides a complete development team of specialized AI agents, w
 | **playwright-expert** | Creates and debugs Playwright E2E tests |
 | **test-runner** | Executes automated tests as quality gate |
 
-### Commands (6)
+### Commands (8)
 
 | Command | Description |
 |---------|-------------|
-| `/dev-strategy` | Select development strategy (approved, rapid, parallel) |
-| `/docs` | Review and update project documentation |
-| `/plan` | Project planning and ticket creation |
-| `/project-status` | Check project status and recommend next tickets |
-| `/ba` | Business Analyst - feature solutioning with deep reasoning |
+| `/setup` | Configure project-toolkit for your project (run first!) |
 | `/swarm` | Execute coordinated multi-agent SWARM workflow (supports multiple tickets with git worktrees) |
+| `/ba` | Business Analyst - feature solutioning with deep reasoning |
+| `/plan` | Project planning and ticket creation |
+| `/docs` | Review and update project documentation |
+| `/dev-strategy` | Select development strategy (approved, rapid, parallel) |
+| `/project-status` | Check project status and recommend next tickets |
 | `/help` | Get help using the plugin |
 
 ### Guides (10)
@@ -81,10 +82,24 @@ claude --add-plugin /path/to/project-toolkit
 
 ## Configuration
 
-### Project-Specific Settings
+### Quick Setup
 
-Create `.claude/project-toolkit.local.md` in your project root to customize behavior:
+Run the setup wizard to automatically detect your tech stack and create configuration:
 
+```
+/setup
+```
+
+### Configuration Files
+
+Project-toolkit uses two configuration files:
+
+| File | Purpose | Committed? |
+|------|---------|------------|
+| `.claude/project-toolkit.md` | Shared project config (tech stack, conventions) | Yes |
+| `.claude/project-toolkit.local.md` | Personal preferences (dev strategy) | No |
+
+**Shared config** (committed to repo, maintained by tech lead):
 ```yaml
 ---
 project_name: "My Project"
@@ -94,13 +109,21 @@ tech_stack:
   testing:
     unit: "Jest"
     e2e: "Playwright"
-workflow_docs:
-  swarm: "docs/guides/SWARM-WORKFLOW.md"
-  git: "docs/guides/GIT-WORKFLOW.md"
+docs:
+  testing: "docs/guides/TESTING.md"
+ticket_system:
+  type: "file"
+  path: "stories/"
 ---
+```
 
-# Project Context
-Add any project-specific context here...
+**Personal config** (gitignored, user-specific):
+```yaml
+---
+preferences:
+  default_strategy: "swarm"
+  require_tests: true
+---
 ```
 
 See `templates/project-toolkit.local.md` for a complete template.
@@ -109,25 +132,24 @@ See `templates/project-toolkit.local.md` for a complete template.
 
 ### Quick Start
 
-1. **Start a new session:**
+1. **Set up the plugin for your project:**
+   ```
+   /setup
+   ```
+   This detects your tech stack and creates configuration files.
+
+2. **Check project status:**
    ```
    /project-status
    ```
-   This shows your current project state and recommends next tickets.
-
-2. **Select a development strategy:**
-   ```
-   /dev-strategy approved   # For complex features
-   /dev-strategy rapid      # For simple changes
-   /dev-strategy parallel   # For multiple independent tasks
-   ```
+   Shows current state and recommends next tickets.
 
 3. **Execute SWARM workflow:**
    ```
    /swarm TICKET-123              # Single ticket
    /swarm TASK-1 TASK-2 TASK-3    # Multiple tickets (parallel with worktrees)
    ```
-   This coordinates the full development workflow through all phases.
+   Coordinates the full development workflow through all phases.
    Multiple tickets are analyzed for dependencies and executed in parallel where possible using git worktrees.
 
 ### SWARM Workflow Phases
@@ -196,10 +218,11 @@ Best for multiple independent tasks.
 project-toolkit/
 ├── .claude-plugin/
 │   └── plugin.json              # Plugin manifest
-├── agents/                       # 12 specialized agents
-├── commands/                     # 6 slash commands
-├── guides/                       # 9 workflow guides
+├── agents/                       # 14 specialized agents
+├── commands/                     # 8 slash commands
+├── guides/                       # 10 workflow guides
 ├── templates/                    # 5 templates
+├── docs/                         # Plugin documentation
 └── README.md                     # This file
 ```
 

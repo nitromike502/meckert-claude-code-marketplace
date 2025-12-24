@@ -23,7 +23,8 @@ Before starting any review, check for project-specific documentation:
    - `${CLAUDE_PLUGIN_ROOT}/guides/CODE-REVIEW-BEST-PRACTICES.md`
    - `${CLAUDE_PLUGIN_ROOT}/guides/CODING-STANDARDS.md`
 
-3. **Check for settings:**
+3. **Check for project settings:**
+   - `.claude/project-toolkit.md` for shared project configuration
    - `.claude/project-toolkit.local.md` for project-specific configuration
 
 ## SWARM Workflow Integration

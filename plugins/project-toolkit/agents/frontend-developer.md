@@ -24,7 +24,8 @@ Before starting frontend work, check for project-specific documentation:
    - `${CLAUDE_PLUGIN_ROOT}/guides/CODING-STANDARDS.md`
    - `${CLAUDE_PLUGIN_ROOT}/guides/TESTING-GUIDE.md`
 
-3. **Check for settings:**
+3. **Check for project settings:**
+   - `.claude/project-toolkit.md` for shared project configuration
    - `.claude/project-toolkit.local.md` for project-specific configuration (frontend framework, component library)
 
 ## SWARM Execution Model

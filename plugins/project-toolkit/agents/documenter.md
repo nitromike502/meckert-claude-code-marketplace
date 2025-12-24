@@ -23,7 +23,8 @@ Before starting documentation work, check for project-specific documentation:
    - `${CLAUDE_PLUGIN_ROOT}/guides/DOCUMENTATION-CHECKLISTS.md`
    - `${CLAUDE_PLUGIN_ROOT}/guides/CODING-STANDARDS.md`
 
-3. **Check for settings:**
+3. **Check for project settings:**
+   - `.claude/project-toolkit.md` for shared project configuration
    - `.claude/project-toolkit.local.md` for project-specific configuration
 
 ## Integration with SWARM Workflow (Phase 5)

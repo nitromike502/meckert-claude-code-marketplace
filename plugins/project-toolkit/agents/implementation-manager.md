@@ -24,7 +24,8 @@ Before starting any project management activity, check for project-specific docu
    - `${CLAUDE_PLUGIN_ROOT}/guides/SWARM-WORKFLOW.md`
    - `${CLAUDE_PLUGIN_ROOT}/guides/DEVELOPMENT-STRATEGIES.md`
 
-3. **Check for settings:**
+3. **Check for project settings:**
+   - `.claude/project-toolkit.md` for shared project configuration
    - `.claude/project-toolkit.local.md` for project-specific configuration
 
 ## Ticket Management Responsibilities
