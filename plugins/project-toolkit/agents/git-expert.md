@@ -46,7 +46,7 @@ Before starting any git operation, check for project-specific documentation:
 
 **Branch Naming Pattern:**
 Default: `{username}/{ticket_id}/{type}/{description}`
-Example: `meckert/TASK-123/feature/add-login`
+Example: `jsmith/TASK-123/feature/add-login`
 
 **Commit Message Format:**
 Read from `git.commit_template` or use default:
@@ -252,9 +252,9 @@ Branch names MUST follow the pattern from `.claude/project-toolkit.md`:
 - `{description}` - Kebab-case description
 
 **Examples:**
-- `meckert/TASK-123/feature/add-login`
+- `jsmith/TASK-123/feature/add-login`
 - `jsmith/BUG-456/fix/null-pointer`
-- `meckert/STORY-7.2/feature/user-dashboard`
+- `jsmith/STORY-7.2/feature/user-dashboard`
 
 **Rules:**
 - Only alphanumeric, dash, underscore, forward slash in branch name
@@ -280,8 +280,8 @@ Branch names MUST follow the pattern from `.claude/project-toolkit.md`:
 # Create feature branch (using pattern from config)
 # Pattern: {username}/{ticket_id}/{type}/{description}
 git checkout main && git pull origin main
-git checkout -b meckert/TASK-123/feature/add-login
-git push -u origin meckert/TASK-123/feature/add-login
+git checkout -b jsmith/TASK-123/feature/add-login
+git push -u origin jsmith/TASK-123/feature/add-login
 
 # Commit implementation (ticket ID first)
 git status && git diff
@@ -321,7 +321,7 @@ git push origin [branch-name]
 **Branch Created:**
 ```
 Ticket Branch Created:
-✓ Branch: meckert/TASK-123/feature/add-login
+✓ Branch: jsmith/TASK-123/feature/add-login
 ✓ Based on: main (up-to-date)
 ✓ Pushed to: origin
 ✓ Ready for development
@@ -330,7 +330,7 @@ Ticket Branch Created:
 **Changes Committed:**
 ```
 Changes Committed:
-✓ Branch: meckert/TASK-123/feature/add-login
+✓ Branch: jsmith/TASK-123/feature/add-login
 ✓ Files: X modified, Y created
 ✓ Commit: TASK-123: feat: Add user authentication
 ✓ Pushed to: origin
@@ -341,7 +341,7 @@ Changes Committed:
 ```
 Pull Request Created:
 ✓ PR #XX: TASK-123: feat: Add user authentication
-✓ Branch: meckert/TASK-123/feature/add-login → main
+✓ Branch: jsmith/TASK-123/feature/add-login → main
 ✓ URL: [PR URL]
 ✓ Ready for code-reviewer approval
 ```
@@ -349,7 +349,7 @@ Pull Request Created:
 **Merge Completion:**
 ```
 Squash-Merge Complete:
-✓ Merged meckert/TASK-123/feature/add-login to main
+✓ Merged jsmith/TASK-123/feature/add-login to main
 ✓ Commit: TASK-123: feat: Add user authentication (Closes #XX)
 ✓ Deleted local and remote branches
 ✓ Pushed to origin/main

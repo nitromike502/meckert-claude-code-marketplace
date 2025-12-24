@@ -4,7 +4,6 @@ arguments:
   - name: mode
     description: "Optional: 'update' to modify existing config without full re-exploration"
     required: false
-requires_subagent: false
 ---
 
 # Project Toolkit Setup
@@ -88,7 +87,7 @@ Questions to ask (only if needed):
 - Ticket ID pattern (if using tickets)
 
 **Always ask for personal config:**
-- Username/identifier for branch naming (e.g., "meckert")
+- Username/identifier for branch naming (e.g., "jsmith")
 - Session tracking: Where to store session docs? Commit them to repo?
 
 ### Step 4: Generate Configuration Files
@@ -115,7 +114,7 @@ ticket_system:
 
 git:
   branch_pattern: "{username}/{ticket_id}/{type}/{description}"
-  # Example: meckert/TASK-123/feature/add-login
+  # Example: jsmith/TASK-123/feature/add-login
   commit_template: ".claude/templates/commit-message.md"
   pr_template: ".claude/templates/pr-description.md"
 
@@ -129,7 +128,7 @@ docs:
 
 ```yaml
 ---
-username: "meckert"  # Used in branch naming pattern
+username: "jsmith"  # Used in branch naming pattern
 
 session_tracking:
   enabled: true

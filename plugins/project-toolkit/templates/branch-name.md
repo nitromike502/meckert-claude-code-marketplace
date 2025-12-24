@@ -11,11 +11,11 @@
 {username}/{ticket_id}/{type}/{description}
 
 # Examples:
-# meckert/TASK-123/feature/add-login
-# meckert/BUG-456/fix/null-pointer
+# jsmith/TASK-123/feature/add-login
+# jsmith/BUG-456/fix/null-pointer
 # jsmith/STORY-7.2/feature/user-dashboard
 
 # Alternative patterns (configure in project-toolkit.md):
 # {ticket_id}/{type}/{description}     -> TASK-123/feature/add-login
-# {username}/{ticket_id}               -> meckert/TASK-123
+# {username}/{ticket_id}               -> jsmith/TASK-123
 # feature/{ticket_id}-{description}    -> feature/TASK-123-add-login

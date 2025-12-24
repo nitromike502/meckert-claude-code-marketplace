@@ -4,7 +4,7 @@
 # This file contains user-specific preferences
 
 # Your username/identifier (used in branch naming)
-username: ""  # e.g., "meckert", "jsmith"
+username: ""  # e.g., "jsmith", "agarcia"
 
 # Session tracking preferences
 session_tracking:

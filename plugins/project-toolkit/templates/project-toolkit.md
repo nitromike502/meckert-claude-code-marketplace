@@ -25,7 +25,7 @@ ticket_system:
 git:
   branch_pattern: "{username}/{ticket_id}/{type}/{description}"
   # Pattern variables: {username}, {ticket_id}, {type}, {description}
-  # Example result: meckert/TASK-123/feature/add-login
+  # Example result: jsmith/TASK-123/feature/add-login
 
   commit_template: ".claude/templates/commit-message.md"
   pr_template: ".claude/templates/pr-description.md"
@@ -35,6 +35,20 @@ docs:
   testing: ""           # e.g., "docs/guides/TESTING.md"
   contributing: ""      # e.g., "CONTRIBUTING.md"
   architecture: ""      # e.g., "docs/ARCHITECTURE.md"
+
+# Project-specific slash commands (defined in your project's .claude/commands/)
+# requires_subagent: true means subagents CANNOT invoke this command
+# (subagents cannot invoke other subagents, so they need to know which commands to avoid)
+#
+# Example:
+# commands:
+#   deploy:
+#     requires_subagent: false
+#     description: "Deploy to staging environment"
+#   run-migrations:
+#     requires_subagent: true
+#     description: "Run database migrations (invokes db-manager agent)"
+commands: {}
 ---
 
 # Project Context

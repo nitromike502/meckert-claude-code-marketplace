@@ -4,7 +4,6 @@ description: Execute SWARM (Specialized Workflow with Autonomous Resource Manage
 tools: Task
 argument-hint: "[ticket(s)] [instructions] - One or more ticket IDs (space/comma separated) and/or custom instructions"
 color: purple
-requires_subagent: true
 ---
 
 # SWARM Workflow Command

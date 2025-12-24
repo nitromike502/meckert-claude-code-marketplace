@@ -1,7 +1,6 @@
 ---
 name: plan
 description: Break down features into Epic/Story/Task tickets using implementation-manager
-requires_subagent: true
 ---
 
 # Project Planning & Ticket Creation
