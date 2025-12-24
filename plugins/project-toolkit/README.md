@@ -21,7 +21,7 @@ Project Toolkit provides a complete development team of specialized AI agents, w
 | **ticket-manager** | Fetches and manages tickets from any system (MCP, API, file-based) |
 | **code-reviewer** | Reviews pull requests for code quality, security, and best practices |
 | **git-expert** | Manages git workflow: branches, commits, PRs, merges |
-| **tester-integration** | Tests API endpoints, UI functionality, cross-platform compatibility |
+| **integrations-tester** | Tests API endpoints, UI functionality, cross-platform compatibility |
 | **implementation-manager** | High-level decisions, timeline management, ticket creation |
 | **subagent-orchestrator** | Coordinates multi-agent workflows, manages dependencies |
 | **wireframe-designer** | Creates wireframes and UI/UX design specifications |
@@ -29,7 +29,7 @@ Project Toolkit provides a complete development team of specialized AI agents, w
 | **backend-developer** | Backend API design and server implementation |
 | **frontend-developer** | Frontend UI development and component creation |
 | **test-auditor** | Audits and optimizes test suites |
-| **tester-playwright** | Creates and debugs Playwright E2E tests |
+| **playwright-expert** | Creates and debugs Playwright E2E tests |
 | **test-runner** | Executes automated tests as quality gate |
 
 ### Commands (6)

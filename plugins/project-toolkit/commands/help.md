@@ -48,8 +48,8 @@ Project Toolkit is a multi-agent development workflow plugin that provides:
 **Quality:**
 - `code-reviewer` - Code quality and security review
 - `test-runner` - Test generation
-- `tester-playwright` - E2E browser tests
-- `tester-integration` - Cross-component testing
+- `playwright-expert` - E2E browser tests
+- `integrations-tester` - Cross-component testing
 - `test-auditor` - Test coverage audit
 
 **Coordination:**

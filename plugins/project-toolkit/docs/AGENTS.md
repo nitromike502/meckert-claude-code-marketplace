@@ -97,7 +97,7 @@ Test generation specialist. Invoke after implementing features to create compreh
 
 ---
 
-### tester-playwright
+### playwright-expert
 E2E browser testing specialist. Invoke for end-to-end user flow testing.
 
 **Good for:**
@@ -110,7 +110,7 @@ E2E browser testing specialist. Invoke for end-to-end user flow testing.
 
 ---
 
-### tester-integration
+### integrations-tester
 Cross-component testing specialist. Invoke when testing how components work together.
 
 **Good for:**
@@ -203,6 +203,6 @@ Git operations coordinator. Invoke for commits, PRs, and branch management.
 | Create documentation | documenter |
 | Commit changes | git-expert |
 | Plan UI layout | wireframe-designer |
-| E2E browser tests | tester-playwright |
-| Test integrations | tester-integration |
+| E2E browser tests | playwright-expert |
+| Test integrations | integrations-tester |
 | Audit test coverage | test-auditor |

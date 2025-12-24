@@ -1,6 +1,6 @@
 ---
-name: tester-integration
-description: Expert in software testing and cross-platform verification. Use proactively when you need to test API endpoints, verify UI functionality, ensure cross-platform compatibility, or validate bug fixes.
+name: integrations-tester
+description: Expert in integration testing and cross-platform verification. Use proactively when you need to test API endpoints, verify system integrations, ensure cross-platform compatibility, or validate bug fixes.
 tools: Read, Bash, Grep, Write, Edit, Glob, WebFetch, TodoWrite, AskUserQuestion
 model: sonnet
 color: green

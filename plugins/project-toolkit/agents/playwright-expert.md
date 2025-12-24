@@ -1,5 +1,5 @@
 ---
-name: tester-playwright
+name: playwright-expert
 description: Use proactively for creating, debugging, and maintaining Playwright E2E tests. Specialist in test automation for SPAs with API backends, API mocking, selector strategies, and test optimization.
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
