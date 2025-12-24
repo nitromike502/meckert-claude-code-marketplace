@@ -28,6 +28,14 @@
       "source": "./plugins/cc-validator",
       "category": "development",
       "tags": ["validation", "frontmatter", "plugin-dev", "agents", "commands"]
+    },
+    {
+      "name": "project-toolkit",
+      "version": "1.0.0",
+      "description": "Multi-agent development workflow toolkit with SWARM methodology for coordinated software development",
+      "source": "./plugins/project-toolkit",
+      "category": "workflow",
+      "tags": ["swarm", "multi-agent", "workflow", "development", "testing", "code-review", "git", "project-management"]
     }
   ]
 }
