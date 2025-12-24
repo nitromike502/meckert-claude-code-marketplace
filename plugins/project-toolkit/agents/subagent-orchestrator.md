@@ -4,6 +4,7 @@ description: Use proactively for coordinating multi-agent workflows, managing de
 tools: Read, Write, TodoWrite, Glob, Grep, AskUserQuestion, Task
 model: sonnet
 color: purple
+allowPlanMode: true
 ---
 
 # Purpose

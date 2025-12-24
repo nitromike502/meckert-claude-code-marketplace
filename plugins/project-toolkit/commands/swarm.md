@@ -42,14 +42,16 @@ Only the main agent invokes subagents. The orchestrator creates plans but does N
 
 ## SWARM Workflow Overview
 
-This command implements the complete SWARM workflow across 7 phases:
+This command implements the complete SWARM workflow across 9 phases:
 1. **Session Initialization & Planning** - Orchestrator creates plan, main agent manages
 2. **Git & Session Setup** - Branch/worktree creation, session tracking doc creation
 3. **Implementation** - Sequential or parallel execution based on orchestrator recommendations
 4. **Commit Code Changes** - git-expert handles all git operations
-5. **Documentation Updates** - documenter updates docs, committed separately
-6. **PR Creation & Code Review** - git-expert creates PR, code-reviewer analyzes
-7. **User Approval & Merge** - Main agent handles cleanup and merge
+5. **Initial Documentation** - documenter updates docs if needed (committed separately)
+6. **PR Creation** - git-expert creates PR, returns URL
+7. **Code Review (On PR)** - code-reviewer leaves inline/file comments directly on PR
+8. **Documentation Updates (Post-Review)** - Update docs if changes were made due to review
+9. **User Approval & Merge** - User reviews PR comments, approves, main agent merges
 
 ---
 
@@ -400,42 +402,93 @@ git worktree prune
 
 ---
 
-## Phase 6: PR Creation & Code Review
+## Phase 6: PR Creation
 
-### Step 1: Main Agent Invokes Git Workflow Specialist
+### Step 1: Main Agent Invokes git-expert
 
-**Create pull request:**
+**Create pull request BEFORE code review:**
 - Generate PR title from ticket
-- Create comprehensive PR body
+- Create comprehensive PR body with:
+  - Summary of changes
+  - Files modified
+  - Test coverage
+  - Link to ticket
 - Push PR to remote
-
-### Step 2: Main Agent Invokes Code Reviewer
-
-**Comprehensive code review:**
-- Code quality and standards
-- Security vulnerabilities
-- Test coverage
-- Documentation completeness
-
-**Code reviewer provides feedback:**
-- Approved → Proceed to Phase 7
-- Changes requested → Fix issues, re-test, re-review
+- **Return PR URL to main agent**
 
 ---
 
-## Phase 7: User Approval & Merge
+## Phase 7: Code Review (On PR)
+
+### Step 1: Main Agent Invokes code-reviewer
+
+**Code reviewer reviews the PR directly:**
+- Use `gh pr diff` to see changes
+- Leave inline comments on specific lines via `gh api`
+- Leave file-level comments where appropriate
+- Submit review with overall assessment
+
+**Review outcomes:**
+- **Approved** → Proceed to Phase 8
+- **Changes Requested** → Fix issues, re-test, push, re-review
+
+### Step 2: If Changes Requested
+
+1. Main agent invokes appropriate developer to fix issues
+2. Developer pushes fixes to same branch
+3. Main agent invokes test-runner to verify
+4. Main agent invokes code-reviewer to re-review PR
+5. Repeat until approved
+
+**User can view all review comments directly on the PR.**
+
+---
+
+## Phase 8: Documentation Updates (Post-Review)
+
+**Only if code review resulted in changes OR documentation updates needed.**
+
+### Step 1: Main Agent Executes /docs Command
+
+**Main agent invokes `/docs` with implementation context:**
+```
+/docs "Update documentation for [feature].
+Implementation details:
+- Added [component/service] with [functionality]
+- Modified [existing component] to support [new behavior]
+- API changes: [list any API changes]
+
+Review recent commits for specific changes."
+```
+
+**documenter agent will:**
+- Review recent commits to understand changes
+- Determine which documentation files need updates
+- Update README, API docs, guides as appropriate
+- NOT be told which files to change - agent decides based on implementation
+
+### Step 2: Commit Documentation
+
+**Main agent invokes git-expert:**
+- Commit documentation changes separately
+- Push to PR branch
+- Format: `docs: update documentation for [ticket-id]`
+
+---
+
+## Phase 9: User Approval & Merge
 
 ### Step 1: Main Agent Presents PR to User
 
 Present:
-- PR URL and summary
-- Code review status
+- PR URL (user can view inline review comments)
+- Code review status (approved)
 - Test results
-- Documentation status
+- Documentation updates made
 
 Request user decision:
 - Approve → Proceed to merge
-- Request changes → Return to Phase 3
+- Request changes → Return to appropriate phase
 
 ### Step 2: User Approves - Cleanup & Merge
 
