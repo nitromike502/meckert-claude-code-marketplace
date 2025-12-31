@@ -31,7 +31,7 @@ This command performs intelligent project assessment and ticket recommendation:
 
 **Integration with SWARM Workflow:**
 - Works with implementation-manager for ticket recommendations
-- Seamlessly hands off to `/swarm` command for execution
+- Seamlessly hands off to `/project-toolkit:swarm` command for execution
 </context>
 
 <execution>
@@ -84,7 +84,7 @@ ls -la docs/sessions/tracking/SESSION-*.md 2>/dev/null
 **Step 1: Get available tickets**
 - Check TodoWrite or ticket system for `backlog` or `todo` items
 
-**Step 2: Invoke `implementation-manager`:**
+**Step 2: Invoke `project-toolkit:implementation-manager`:**
 - Provide: List of available tickets
 - Request: Analyze tickets and recommend 3-5 options
 - Project manager considers:
@@ -111,7 +111,7 @@ Format:
 ### Option 2: [TICKET-ID] - [Title]
 [Same structure]
 
-**To start work on a ticket:** `/swarm [TICKET-ID]`
+**To start work on a ticket:** `/project-toolkit:swarm [TICKET-ID]`
 ```
 
 ---
@@ -153,7 +153,7 @@ Format:
 **A) Continue Current Work**
    - Resume work on current ticket
    - Read session tracking doc for context
-   - Command: `/swarm [TICKET-ID]`
+   - Command: `/project-toolkit:swarm [TICKET-ID]`
 
 **B) Complete and Switch**
    - Finish current work (commit, PR, merge)
@@ -209,7 +209,7 @@ Response:
 - Ticket status: No in-progress tickets
 - Session tracking: No active sessions
 - Recommendation: Show 3-5 ticket options
-- Offer: `/swarm [TICKET-ID]` to start work
+- Offer: `/project-toolkit:swarm [TICKET-ID]` to start work
 ```
 
 ### Example 2: Active work found - Show current status

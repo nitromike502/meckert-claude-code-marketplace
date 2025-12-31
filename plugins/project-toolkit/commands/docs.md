@@ -43,7 +43,7 @@ Historical documentation reviews are stored in `docs/reviews/` for reference. Pr
 </context>
 
 <execution>
-Invoke the `documenter` agent with these specific instructions:
+Invoke the `project-toolkit:documenter` agent with these specific instructions:
 
 ## Primary Objectives
 1. **Accommodate User Instructions**: If additional instructions were provided above, prioritize and address them first

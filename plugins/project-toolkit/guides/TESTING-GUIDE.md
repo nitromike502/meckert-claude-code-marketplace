@@ -214,7 +214,7 @@ If tests fail:
 ### Test Execution in SWARM Workflow
 
 Within SWARM workflow, main agent delegates ALL test execution to test-runner:
-- Main agent invokes: `test-runner` in Phase 3
+- Main agent invokes: `project-toolkit:test-runner` in Phase 3
 - Test engineer runs full suite (backend + frontend)
 - Returns structured pass/fail report
 - Main agent coordinates fixes if needed

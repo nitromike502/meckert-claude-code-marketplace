@@ -273,16 +273,16 @@ This project uses specialized Claude Code subagents for different aspects of dev
 ### Separation of Concerns
 
 **Development Agents:**
-- `backend-developer` - Backend implementation
-- `frontend-developer` - Frontend implementation
+- `project-toolkit:backend-developer` - Backend implementation
+- `project-toolkit:frontend-developer` - Frontend implementation
 - `data-parser` - Data parsing and utilities
-- `test-runner` - Test implementation
+- `project-toolkit:test-runner` - Test implementation
 
 **Coordination Agents:**
-- `git-expert` - All git operations (commits, branches, PRs, merges)
-- `subagent-orchestrator` - Task delegation and workflow coordination
-- `code-reviewer` - Code quality and standards review
-- `documenter` - Documentation updates
+- `project-toolkit:git-expert` - All git operations (commits, branches, PRs, merges)
+- `project-toolkit:subagent-orchestrator` - Task delegation and workflow coordination
+- `project-toolkit:code-reviewer` - Code quality and standards review
+- `project-toolkit:documenter` - Documentation updates
 
 ### Workflow Sequence
 
@@ -301,7 +301,7 @@ This project uses specialized Claude Code subagents for different aspects of dev
 - **Better Code Review** - Dedicated review agent catches issues early
 - **Audit Trail** - All operations traceable to specific agents
 
-For SWARM-based development workflows, use the `/swarm` command to launch coordinated multi-agent tasks.
+For SWARM-based development workflows, use the `/project-toolkit:swarm` command to launch coordinated multi-agent tasks.
 
 ## Related Documentation
 

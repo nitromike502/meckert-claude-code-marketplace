@@ -1,0 +1,19 @@
+{
+  "name": "dev-toolkit",
+  "version": "1.0.0-beta.1",
+  "description": "Multi-agent development workflow toolkit with SWARM methodology for coordinated software development",
+  "author": {
+    "name": "Claude Code User"
+  },
+  "keywords": [
+    "swarm",
+    "workflow",
+    "multi-agent",
+    "development",
+    "testing",
+    "code-review",
+    "git",
+    "project-management"
+  ],
+  "license": "MIT"
+}

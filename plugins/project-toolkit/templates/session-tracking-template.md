@@ -490,7 +490,7 @@
 **After user approves and PR is merged:**
 
 - [ ] **Move ticket to done status**
-  - Invoke `agile-ticket-manager` to move ticket from `review` to `done`
+  - Invoke `project-toolkit:ticket-manager` to move ticket from `review` to `done`
   - Update ticket completion timestamp
   - Document final merge commit hash in ticket
 
@@ -515,7 +515,7 @@
   - Verify local branch is up-to-date with merged PR
 
 - [ ] **Query ticket manager for next available work**
-  - Invoke `agile-ticket-manager` to retrieve todo/backlog tickets
+  - Invoke `project-toolkit:ticket-manager` to retrieve todo/backlog tickets
   - Get recommendations for next logical ticket
   - Consider dependencies and priorities
 

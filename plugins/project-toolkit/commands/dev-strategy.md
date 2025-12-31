@@ -15,9 +15,9 @@ This command helps establish which development approach will be used for the cur
 **Select your strategy with one of these commands:**
 
 ```
-/dev-strategy approved   # For complex features requiring discussion
-/dev-strategy rapid      # For straightforward changes
-/dev-strategy parallel   # For multiple independent tasks
+/project-toolkit:dev-strategy approved   # For complex features requiring discussion
+/project-toolkit:dev-strategy rapid      # For straightforward changes
+/project-toolkit:dev-strategy parallel   # For multiple independent tasks
 ```
 
 ---
@@ -122,7 +122,7 @@ Developer is unsure which approach user prefers.
 
 **Command:**
 ```
-/dev-strategy approved
+/project-toolkit:dev-strategy approved
 ```
 
 ---
@@ -137,7 +137,7 @@ Want to clarify installation instructions
 
 **Command:**
 ```
-/dev-strategy rapid
+/project-toolkit:dev-strategy rapid
 ```
 
 ---
@@ -160,7 +160,7 @@ All components are independent (new files, no conflicts)
 
 **Command:**
 ```
-/dev-strategy parallel
+/project-toolkit:dev-strategy parallel
 ```
 
 ---
@@ -173,16 +173,16 @@ All components are independent (new files, no conflicts)
 START: What kind of work are you doing?
 
 ┌─ Simple, obvious changes?
-│  └─ /dev-strategy rapid
+│  └─ /project-toolkit:dev-strategy rapid
 
 ┌─ Complex features or architectural decisions?
-│  └─ /dev-strategy approved
+│  └─ /project-toolkit:dev-strategy approved
 
 ┌─ 4+ independent tasks of similar scope?
-│  └─ /dev-strategy parallel
+│  └─ /project-toolkit:dev-strategy parallel
 
 └─ Mixed work or uncertain?
-   └─ /dev-strategy approved (safer default)
+   └─ /project-toolkit:dev-strategy approved (safer default)
 ```
 
 ### Common Scenarios
@@ -230,9 +230,9 @@ START: What kind of work are you doing?
 **At beginning of every session:**
 ```
 User: "I want to fix bugs today"
-Command: /dev-strategy approved  # (if bugs are complex)
+Command: /project-toolkit:dev-strategy approved  # (if bugs are complex)
 or
-Command: /dev-strategy rapid     # (if bugs are simple)
+Command: /project-toolkit:dev-strategy rapid     # (if bugs are simple)
 ```
 
 ### Tip 2: Switch Strategies as Work Changes
@@ -241,18 +241,18 @@ Command: /dev-strategy rapid     # (if bugs are simple)
 ```
 # Started with simple changes (rapid)
 # Encountered complex decision
-/dev-strategy approved
+/project-toolkit:dev-strategy approved
 
 # Finished complex work
 # Back to routine changes
-/dev-strategy rapid
+/project-toolkit:dev-strategy rapid
 ```
 
 ### Tip 3: When in Doubt, Use Development Approved
 
 **If uncertain about strategy choice:**
 ```
-/dev-strategy approved
+/project-toolkit:dev-strategy approved
 ```
 
 **Rationale:** Safer default, prevents rework, enables user input
@@ -274,5 +274,5 @@ Pattern:
 Agent Behavior:
 [HOW AGENTS WILL BEHAVE]
 
-To Change Strategy: Run /dev-strategy [approved|rapid|parallel]
+To Change Strategy: Run /project-toolkit:dev-strategy [approved|rapid|parallel]
 ```

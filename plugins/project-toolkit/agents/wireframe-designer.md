@@ -20,7 +20,7 @@ You are a UI/UX design specialist responsible for creating wireframes and design
 
 **Workflow Position:**
 ```
-User → /ba command → BA analysis → Main agent → wireframe-designer → Design deliverables → Main agent → Project manager (ticket creation)
+User → /project-toolkit:ba command → BA analysis → Main agent → wireframe-designer → Design deliverables → Main agent → Project manager (ticket creation)
 ```
 
 **Key Responsibilities:**

@@ -4,16 +4,16 @@ This plugin provides 6 slash commands for common workflows.
 
 ---
 
-## /swarm
+## /project-toolkit:swarm
 
 **Purpose:** Execute the full SWARM development workflow for one or more tickets.
 
 **Usage:**
 ```
-/swarm TASK-1.2.3                    # Single ticket
-/swarm TASK-1.2.3 TASK-1.2.4         # Multiple tickets (parallel with worktrees)
-/swarm STORY-2.1 Focus on API first  # Single ticket with instructions
-/swarm                                # Auto-select from available tickets
+/project-toolkit:swarm TASK-1.2.3                    # Single ticket
+/project-toolkit:swarm TASK-1.2.3 TASK-1.2.4         # Multiple tickets (parallel with worktrees)
+/project-toolkit:swarm STORY-2.1 Focus on API first  # Single ticket with instructions
+/project-toolkit:swarm                                # Auto-select from available tickets
 ```
 
 **What it does:**
@@ -38,14 +38,14 @@ This plugin provides 6 slash commands for common workflows.
 
 ---
 
-## /ba
+## /project-toolkit:ba
 
 **Purpose:** Business analysis with deep reasoning. Analyzes features and provides solution recommendations.
 
 **Usage:**
 ```
-/ba "Add user authentication with OAuth"
-/ba "Improve dashboard performance"
+/project-toolkit:ba "Add user authentication with OAuth"
+/project-toolkit:ba "Improve dashboard performance"
 ```
 
 **What it does:**
@@ -58,14 +58,14 @@ This plugin provides 6 slash commands for common workflows.
 
 ---
 
-## /plan
+## /project-toolkit:plan
 
 **Purpose:** Break down a feature into Epic/Story/Task tickets.
 
 **Usage:**
 ```
-/plan "User profile management"
-/plan "Add real-time notifications"
+/project-toolkit:plan "User profile management"
+/project-toolkit:plan "Add real-time notifications"
 ```
 
 **What it does:**
@@ -78,14 +78,14 @@ This plugin provides 6 slash commands for common workflows.
 
 ---
 
-## /docs
+## /project-toolkit:docs
 
 **Purpose:** Generate documentation for a component or module.
 
 **Usage:**
 ```
-/docs UserService
-/docs "authentication flow"
+/project-toolkit:docs UserService
+/project-toolkit:docs "authentication flow"
 ```
 
 **What it does:**
@@ -98,13 +98,13 @@ This plugin provides 6 slash commands for common workflows.
 
 ---
 
-## /dev-strategy
+## /project-toolkit:dev-strategy
 
 **Purpose:** Choose the development approach for your current work.
 
 **Usage:**
 ```
-/dev-strategy
+/project-toolkit:dev-strategy
 ```
 
 **Options:**
@@ -116,13 +116,13 @@ This plugin provides 6 slash commands for common workflows.
 
 ---
 
-## /project-status
+## /project-toolkit:project-status
 
 **Purpose:** Check current project status and get recommendations.
 
 **Usage:**
 ```
-/project-status
+/project-toolkit:project-status
 ```
 
 **What it does:**
@@ -135,15 +135,15 @@ This plugin provides 6 slash commands for common workflows.
 
 ---
 
-## /help
+## /project-toolkit:help
 
 **Purpose:** Get help using the Project Toolkit.
 
 **Usage:**
 ```
-/help
-/help agents
-/help swarm
+/project-toolkit:help
+/project-toolkit:help agents
+/project-toolkit:help swarm
 ```
 
 **What it does:**
@@ -159,11 +159,11 @@ This plugin provides 6 slash commands for common workflows.
 
 | Command | Use Case |
 |---------|----------|
-| `/swarm TASK-ID` | Execute a single ticket |
-| `/swarm TASK-1 TASK-2` | Execute multiple tickets in parallel (worktrees) |
-| `/ba "feature"` | Analyze a feature deeply |
-| `/plan "feature"` | Create tickets for a feature |
-| `/docs Component` | Generate documentation |
-| `/dev-strategy` | Set development approach |
-| `/project-status` | See what to work on |
-| `/help` | Get help |
+| `/project-toolkit:swarm TASK-ID` | Execute a single ticket |
+| `/project-toolkit:swarm TASK-1 TASK-2` | Execute multiple tickets in parallel (worktrees) |
+| `/project-toolkit:ba "feature"` | Analyze a feature deeply |
+| `/project-toolkit:plan "feature"` | Create tickets for a feature |
+| `/project-toolkit:docs Component` | Generate documentation |
+| `/project-toolkit:dev-strategy` | Set development approach |
+| `/project-toolkit:project-status` | See what to work on |
+| `/project-toolkit:help` | Get help |

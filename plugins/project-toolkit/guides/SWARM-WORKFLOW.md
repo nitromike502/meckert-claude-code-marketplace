@@ -6,11 +6,12 @@
 
 ### Architecture Philosophy
 
-The SWARM workflow is built on three foundational principles:
+The SWARM workflow is built on four foundational principles:
 
 1. **Centralized Coordination:** Only the main agent invokes subagents - this prevents chaos and maintains clear command structure
-2. **Specialized Expertise:** Each subagent has a specific domain of expertise and does not perform operations outside their scope
-3. **Systematic Progress:** Work flows through defined phases with clear gates, handoffs, and quality checkpoints
+2. **Trust Subagent Output:** Present subagent results directly without duplicating their analysis - subagents run in isolated contexts specifically to do analysis work
+3. **Specialized Expertise:** Each subagent has a specific domain of expertise and does not perform operations outside their scope
+4. **Systematic Progress:** Work flows through defined phases with clear gates, handoffs, and quality checkpoints
 
 ### Core Components
 
@@ -141,14 +142,14 @@ Task: [STORY-X.X]
 
 Before invoking SWARM, determine what work to execute:
 
-#### Option A: Enhanced `/project-status` Command
+#### Option A: Enhanced `/project-toolkit:project-status` Command
 
 If NOT currently working on a ticket:
-1. Main agent invokes `agile-ticket-manager` to retrieve available tickets
-2. Main agent invokes `implementation-manager` to get recommendations based on priorities
+1. Main agent invokes `project-toolkit:ticket-manager` to retrieve available tickets
+2. Main agent invokes `project-toolkit:implementation-manager` to get recommendations based on priorities
 3. Present options to user with context (priority, dependencies, estimates)
 4. User selects ticket(s) to work on
-5. User then runs `/swarm <ticket-id>`
+5. User then runs `/project-toolkit:swarm <ticket-id>`
 
 If already working on a ticket:
 1. Show current status (ticket ID, progress, blockers)
@@ -159,7 +160,7 @@ If already working on a ticket:
 
 When user already knows the ticket:
 ```bash
-/swarm STORY-3.1 "Focus on backend services first"
+/project-toolkit:swarm STORY-3.1 "Focus on backend services first"
 ```
 
 Main agent immediately begins workflow with specified ticket.
@@ -316,7 +317,7 @@ When tasks have dependencies or modify same files:
 
 **For each task:**
 
-1. **Main agent invokes appropriate developer agent** (e.g., `backend-developer`)
+1. **Main agent invokes appropriate developer agent** (e.g., `project-toolkit:backend-developer`)
    - Provide clear task scope and acceptance criteria
    - Reference session tracking document for context
    - Specify which files to modify
@@ -726,55 +727,61 @@ Reply with "approved" to merge, or provide feedback for changes.
    - Orchestrator creates plans but does NOT invoke other agents
    - This prevents chaos and maintains clear command structure
 
-2. **One Commit Per Task (Sequential Work)**
+2. **Trust Subagent Output**
+   - Present subagent results directly to user without additional research
+   - Do NOT read source files to "verify" or "validate" subagent analysis
+   - Subagents run in isolated contexts specifically to do analysis work
+   - Duplicating that analysis wastes main agent context
+
+3. **One Commit Per Task (Sequential Work)**
    - Each task completion triggers immediate commit
    - Commit message MUST reference ticket ID
    - Never bundle multiple sequential tasks into one commit
 
-3. **Batch Commit for Parallel Work**
+4. **Batch Commit for Parallel Work**
    - When tasks execute in parallel, use single batch commit
    - Commit message references all task IDs involved
    - Only valid when tasks truly executed simultaneously
 
-4. **Validate Changes During Development**
+5. **Validate Changes During Development**
    - Developers validate changes manually (browser, CLI, visual inspection)
    - Defer comprehensive testing until Phase 4 (story completion)
    - Running full test suite after every task creates massive bottleneck
 
-5. **Comprehensive Testing Before PR**
+6. **Comprehensive Testing Before PR**
    - Run targeted tests first (Phase 4, Step 1)
    - Run full test suite once (Phase 4, Step 2)
    - Tests are HARD GATE - cannot create PR with failures
    - Exception: Accept documented flaky tests
 
-6. **Ticket Status Must Be Current**
+7. **Ticket Status Must Be Current**
    - Update status at ALL key transitions:
      - `todo` → `in-progress` (work starts)
      - `in-progress` → `review` (implementation complete, tests pass)
      - `review` → `done` (user approves, PR merged)
      - `review` → `in-progress` (user requests changes)
 
-7. **Git Operations Exclusively via git-expert**
+8. **Git Operations Exclusively via git-expert**
    - Developers NEVER create branches, commits, or PRs
    - All git commands go through git-expert
    - Ensures consistency and proper conventions
 
-8. **User Approval is Mandatory Gate**
+9. **User Approval is Mandatory Gate**
    - Tickets cannot move to `done` without user review
    - Main agent MUST present PR to user and wait for approval
    - User has authority to request changes or approve
 
-9. **Session Tracking is Main Agent's Responsibility**
-   - Main agent creates and maintains session tracking document
-   - NOT delegated to documenter
-   - Must be comprehensive enough for session resumption
+10. **Session Tracking is Main Agent's Responsibility**
+    - Main agent creates and maintains session tracking document
+    - NOT delegated to documenter
+    - Must be comprehensive enough for session resumption
 
-10. **Documentation Updates After Implementation**
+11. **Documentation Updates After Implementation**
     - Documentation changes happen in Phase 5
     - Always after implementation complete
     - Committed separately from implementation code
 
-11. **TodoWrite Mirrors Session Tracking**
+12. **TodoWrite Mirrors Session Tracking**
     - TodoWrite provides real-time status visibility
     - Updated after each milestone completion
     - Kept in sync with session tracking document
@@ -959,10 +966,10 @@ Agile-ticket-manager acts as API for ticket operations:
 ### Starting SWARM Workflow
 ```bash
 # Check project status and get recommendations
-/project-status
+/project-toolkit:project-status
 
 # Direct SWARM invocation with ticket
-/swarm STORY-3.2 "Focus on responsive design"
+/project-toolkit:swarm STORY-3.2 "Focus on responsive design"
 ```
 
 ### During SWARM Session
@@ -1080,8 +1087,5 @@ PHASE 7: User Approval & Merge
 
 ---
 
-**Last Updated:** December 7, 2025
-**Version:** 1.2
-**Status:** Official Workflow Standard
-**Key Changes in v1.2:** Added Phase 0 (Comparative Analysis) for feature parity work to prevent costly debugging by ensuring thorough understanding of existing patterns before implementation
-**Previous Changes in v1.1:** Implemented targeted testing strategy (defer comprehensive testing to Phase 4, avoid per-task test bottleneck)
+**Last Updated:** December 29, 2025
+**Version:** 1.3

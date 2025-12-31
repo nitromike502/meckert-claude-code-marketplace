@@ -13,7 +13,7 @@ You are a helpful assistant that explains how to use the Project Toolkit plugin.
 
 ## User's Question
 
-The user ran `/help` with topic: `$ARGUMENTS`
+The user ran `/project-toolkit:help` with topic: `$ARGUMENTS`
 
 ## Plugin Overview
 
@@ -27,51 +27,51 @@ Project Toolkit is a multi-agent development workflow plugin that provides:
 
 | Command | Purpose |
 |---------|---------|
-| `/setup` | Configure project-toolkit for your project (run first!) |
-| `/swarm TASK-ID` | Execute full development workflow for a ticket |
-| `/swarm TASK-1 TASK-2` | Execute multiple tickets in parallel (git worktrees) |
-| `/ba "description"` | Business analysis with deep reasoning |
-| `/plan "feature"` | Break down a feature into tickets |
-| `/docs Component` | Generate documentation |
-| `/dev-strategy` | Choose development approach (approved/rapid/parallel) |
-| `/project-status` | Check status and get next steps |
-| `/help [topic]` | Get help (this command) |
+| `/project-toolkit:setup` | Configure project-toolkit for your project (run first!) |
+| `/project-toolkit:swarm TASK-ID` | Execute full development workflow for a ticket |
+| `/project-toolkit:swarm TASK-1 TASK-2` | Execute multiple tickets in parallel (git worktrees) |
+| `/project-toolkit:ba "description"` | Business analysis with deep reasoning |
+| `/project-toolkit:plan "feature"` | Break down a feature into tickets |
+| `/project-toolkit:docs Component` | Generate documentation |
+| `/project-toolkit:dev-strategy` | Choose development approach (approved/rapid/parallel) |
+| `/project-toolkit:project-status` | Check status and get next steps |
+| `/project-toolkit:help [topic]` | Get help (this command) |
 
 ## Available Agents
 
 **Ticket Management:**
-- `ticket-manager` - Fetch/manage tickets (MCP, API, file-based)
+- `project-toolkit:ticket-manager` - Fetch/manage tickets (MCP, API, file-based)
 
 **Development:**
-- `frontend-developer` - UI components and layouts
-- `backend-developer` - APIs and server logic
-- `wireframe-designer` - UI/UX planning
+- `project-toolkit:frontend-developer` - UI components and layouts
+- `project-toolkit:backend-developer` - APIs and server logic
+- `project-toolkit:wireframe-designer` - UI/UX planning
 
 **Quality:**
-- `code-reviewer` - Code quality and security review
-- `test-runner` - Test generation
-- `playwright-expert` - E2E browser tests
-- `integrations-tester` - Cross-component testing
-- `test-auditor` - Test coverage audit
+- `project-toolkit:code-reviewer` - Code quality and security review
+- `project-toolkit:test-runner` - Test generation
+- `project-toolkit:playwright-expert` - E2E browser tests
+- `project-toolkit:integrations-tester` - Cross-component testing
+- `project-toolkit:test-auditor` - Test coverage audit
 
 **Coordination:**
-- `implementation-manager` - Feature planning and tickets
-- `subagent-orchestrator` - Multi-agent coordination
-- `documenter` - Documentation generation
-- `git-expert` - Commits and PRs
+- `project-toolkit:implementation-manager` - Feature planning and tickets
+- `project-toolkit:subagent-orchestrator` - Multi-agent coordination
+- `project-toolkit:documenter` - Documentation generation
+- `project-toolkit:git-expert` - Commits and PRs
 
 ## SWARM Workflow
 
 SWARM (Specialized Workflow with Autonomous Resource Management) is the core orchestration pattern:
 
 **Single ticket:**
-1. `/swarm TASK-1.2.3` retrieves the ticket
+1. `/project-toolkit:swarm TASK-1.2.3` retrieves the ticket
 2. Analyzes what agents are needed
 3. Coordinates development → testing → review → documentation
 4. Prepares the commit
 
 **Multiple tickets (parallel with git worktrees):**
-1. `/swarm TASK-1 TASK-2 TASK-3` analyzes dependencies
+1. `/project-toolkit:swarm TASK-1 TASK-2 TASK-3` analyzes dependencies
 2. Creates git worktrees for independent tickets
 3. Executes in parallel where possible, sequential where needed
 4. Manages merges and cleanup
@@ -79,9 +79,9 @@ SWARM (Specialized Workflow with Autonomous Resource Management) is the core orc
 ## Getting Started
 
 1. Add plugin to `.claude/settings.json`
-2. Run `/setup` to configure the plugin for your project
-3. Run `/project-status` to see what to work on
-4. Use `/swarm TASK-ID` to start development
+2. Run `/project-toolkit:setup` to configure the plugin for your project
+3. Run `/project-toolkit:project-status` to see what to work on
+4. Use `/project-toolkit:swarm TASK-ID` to start development
 
 ## Configuration Files
 
@@ -92,7 +92,7 @@ Project-toolkit uses two configuration files:
 | `.claude/project-toolkit.md` | Shared project config (tech stack, conventions) | Yes |
 | `.claude/project-toolkit.local.md` | Personal preferences (dev strategy) | No (gitignore) |
 
-Run `/setup` to create these automatically, or copy from `templates/`.
+Run `/project-toolkit:setup` to create these automatically, or copy from `templates/`.
 
 ## Documentation Locations
 

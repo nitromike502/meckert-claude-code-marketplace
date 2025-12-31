@@ -36,6 +36,14 @@
       "source": "./plugins/project-toolkit",
       "category": "workflow",
       "tags": ["swarm", "multi-agent", "workflow", "development", "testing", "code-review", "git", "project-management"]
+    },
+    {
+      "name": "dev-toolkit",
+      "version": "1.3.0",
+      "description": "Multi-agent development workflow toolkit with SWARM methodology for coordinated software development",
+      "source": "./plugins/dev-toolkit",
+      "category": "workflow",
+      "tags": ["swarm", "multi-agent", "workflow", "development", "testing", "code-review", "git", "project-management"]
     }
   ]
 }

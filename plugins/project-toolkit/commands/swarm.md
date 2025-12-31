@@ -95,7 +95,7 @@ This command implements the complete SWARM workflow across 9 phases:
 
 ### Phase M1: Dependency Analysis
 
-**Main agent invokes `subagent-orchestrator`** with ALL tickets for dependency analysis:
+**Main agent invokes `project-toolkit:subagent-orchestrator`** with ALL tickets for dependency analysis:
 
 ```
 Analyze dependencies between tickets:
@@ -142,7 +142,7 @@ Execution Plan:
 
 ### Phase M3: Git Worktree Setup
 
-**Main agent invokes `git-expert`** to set up worktrees:
+**Main agent invokes `project-toolkit:git-expert`** to set up worktrees:
 
 ```bash
 # Ensure main is up to date
@@ -251,7 +251,7 @@ git worktree prune
 
 ### Step 1: Invoke Orchestrator for Planning
 
-**Main agent invokes `subagent-orchestrator`** with ticket context:
+**Main agent invokes `project-toolkit:subagent-orchestrator`** with ticket context:
 
 **If ticket ID provided:**
 - Main agent fetches ticket details
@@ -260,7 +260,7 @@ git worktree prune
 
 **If NO ticket ID provided:**
 - Main agent retrieves available tickets (backlog, todo)
-- Main agent invokes `implementation-manager` to analyze and recommend tickets
+- Main agent invokes `project-toolkit:implementation-manager` to analyze and recommend tickets
 - Present ticket options to user
 - User selects ticket
 - Main agent invokes orchestrator with selected ticket
@@ -271,6 +271,8 @@ git worktree prune
 - Parallel vs. sequential execution recommendations
 - Risk assessment and mitigations
 - Time estimates
+
+**TRUST SUBAGENT OUTPUT:** Present the orchestrator's plan directly to the user without additional research. Subagents run in isolated contexts specifically to do analysis work - duplicating that work wastes main agent context.
 
 ### Step 3: Present Plan and Move Ticket
 
@@ -294,7 +296,7 @@ git worktree prune
 
 ### Step 1: Invoke Git Workflow Specialist
 
-**Main agent invokes `git-expert`:**
+**Main agent invokes `project-toolkit:git-expert`:**
 - Pull latest changes from remote
 - Create feature branch: `feature/[ticket-id]-description`
 - Push feature branch to remote
@@ -390,7 +392,7 @@ git worktree prune
 
 ### Step 1: Main Agent Invokes Documentation Engineer
 
-**Main agent invokes `documenter`:**
+**Main agent invokes `project-toolkit:documenter`:**
 - Specify which documents need updates
 - Provide context about changes made
 
@@ -452,7 +454,7 @@ git worktree prune
 
 **Main agent invokes `/docs` with implementation context:**
 ```
-/docs "Update documentation for [feature].
+/project-toolkit:docs "Update documentation for [feature].
 Implementation details:
 - Added [component/service] with [functionality]
 - Modified [existing component] to support [new behavior]
@@ -520,30 +522,44 @@ Show:
 **Mandatory Practices:**
 
 1. **Only Main Agent Invokes Subagents** - Orchestrator creates plans but does NOT invoke
-2. **One Commit Per Task (Sequential)** - Each task completion triggers immediate commit
-3. **Batch Commit for Parallel Work** - Single commit when tasks truly execute simultaneously
-4. **Test Immediately After Each Task** - Developers test before declaring complete
-5. **Ticket Status Must Be Current** - Update at ALL key transitions
-6. **Git Operations via git-expert** - Developers NEVER do git operations
-7. **User Approval is Mandatory Gate** - Tickets cannot move to `done` without user review
-8. **Session Tracking is Main Agent's Job** - NOT delegated to documenter
-9. **Documentation Updates After Implementation** - Committed separately from code
-10. **TodoWrite Mirrors Session Tracking** - Updated after each milestone
+2. **Trust Subagent Output** - Present subagent results directly; do NOT duplicate their analysis with your own file reads
+3. **One Commit Per Task (Sequential)** - Each task completion triggers immediate commit
+4. **Batch Commit for Parallel Work** - Single commit when tasks truly execute simultaneously
+5. **Test Immediately After Each Task** - Developers test before declaring complete
+6. **Ticket Status Must Be Current** - Update at ALL key transitions
+7. **Git Operations via git-expert** - Developers NEVER do git operations
+8. **User Approval is Mandatory Gate** - Tickets cannot move to `done` without user review
+9. **Session Tracking is Main Agent's Job** - NOT delegated to documenter
+10. **Documentation Updates After Implementation** - Committed separately from code
+11. **TodoWrite Mirrors Session Tracking** - Updated after each milestone
 
 ---
 
 ## MAIN AGENT DELEGATION RULES - MANDATORY
 
-**CRITICAL:** As the main agent in SWARM workflow, you are a **COORDINATOR**, not an implementer.
+**CRITICAL:** As the main agent in SWARM workflow, you are a **COORDINATOR**, not an implementer. Your role is to invoke subagents and track progress - NEVER to perform implementation work directly.
 
 ### What You MUST NEVER Do Directly:
 
 | Action | Use This Subagent Instead |
 |--------|---------------------------|
-| Edit code files | `frontend-developer` or `backend-developer` |
-| Run tests | `test-runner` |
-| Execute git commands | `git-expert` |
-| Update documentation files | `documenter` |
+| Edit code files (Edit tool on src/, tests/) | `project-toolkit:frontend-developer` or `project-toolkit:backend-developer` |
+| Run tests (Bash npm test, npx jest, etc.) | `project-toolkit:test-runner` |
+| Execute git commands (git add, commit, push, etc.) | `project-toolkit:git-expert` |
+| Query/update tickets in database | `project-toolkit:ticket-manager` |
+| Update documentation files | `project-toolkit:documenter` |
+
+### The "One Line Change" Rule
+
+Even if a task appears trivial (one-line fix, simple file move, single git command), you **MUST delegate** to the appropriate specialist. Specialists handle:
+
+- **Complete workflows** - not just the "hard parts"
+- **Quality validation** - they know domain-specific standards
+- **Safety protocols** - especially for git operations and ticket integrity
+- **Pattern consistency** - they maintain codebase conventions
+
+**Wrong thinking:** "This is just one line → I'll do it directly"
+**Correct thinking:** "This is code modification → frontend-developer owns code quality"
 
 ### What You MAY Do Directly:
 
@@ -554,6 +570,21 @@ Show:
 - Create/update session tracking documents
 - Present information to users and request decisions
 - Parse orchestrator plans and coordinate execution
+
+### Pre-Action Check
+
+Before using Edit, Bash, or Write tools, ask yourself:
+1. "Is this an implementation action?" → If yes, **delegate**
+2. "Does a specialist own this domain?" → If yes, **delegate**
+3. "Am I about to modify project state?" → If yes, **delegate**
+
+### Why This Matters
+
+**Context efficiency:** Delegation actually SAVES context because subagents work in isolated contexts. Direct implementation consumes MORE main agent context through file reads, debugging, and multiple attempts.
+
+**Quality assurance:** Specialists know domain-specific rules. Example: git-expert knows the branching strategy and will create bug fixes from `main`, not from feature branches.
+
+**Process integrity:** When you bypass specialists, you bypass the quality gates and safety protocols they enforce.
 
 ---
 

@@ -17,7 +17,7 @@ Add the plugin to your `.claude/settings.json`:
 Run the setup wizard to configure the plugin for your project:
 
 ```
-/setup
+/project-toolkit:setup
 ```
 
 This will:
@@ -85,40 +85,40 @@ ticket_system:
 
 | Command | What it does |
 |---------|-------------|
-| `/setup` | Configure plugin for your project |
-| `/swarm TASK-ID` | Run the full development workflow |
-| `/ba "description"` | Analyze a feature with deep reasoning |
-| `/plan "feature"` | Break down a feature into tickets |
-| `/docs Component` | Generate documentation |
-| `/dev-strategy` | Choose development approach |
-| `/project-status` | Check status and next steps |
-| `/help` | Get help using the plugin |
+| `/project-toolkit:setup` | Configure plugin for your project |
+| `/project-toolkit:swarm TASK-ID` | Run the full development workflow |
+| `/project-toolkit:ba "description"` | Analyze a feature with deep reasoning |
+| `/project-toolkit:plan "feature"` | Break down a feature into tickets |
+| `/project-toolkit:docs Component` | Generate documentation |
+| `/project-toolkit:dev-strategy` | Choose development approach |
+| `/project-toolkit:project-status` | Check status and next steps |
+| `/project-toolkit:help` | Get help using the plugin |
 
 ## Basic Usage
 
 **First time setup:**
 ```
-/setup
+/project-toolkit:setup
 ```
 
 **Start a task:**
 ```
-/swarm TASK-1.2.3
+/project-toolkit:swarm TASK-1.2.3
 ```
 
 **Run multiple tasks in parallel:**
 ```
-/swarm TASK-1.1 TASK-1.2 TASK-1.3
+/project-toolkit:swarm TASK-1.1 TASK-1.2 TASK-1.3
 ```
 
 **Plan a new feature:**
 ```
-/plan "Add user authentication"
+/project-toolkit:plan "Add user authentication"
 ```
 
 **Check what to work on:**
 ```
-/project-status
+/project-toolkit:project-status
 ```
 
 ## Ticket Structure
@@ -139,6 +139,6 @@ Or configure MCP/API integrations for Jira, Linear, GitHub Issues, etc.
 
 ## Next Steps
 
-- Run `/help agents` to learn about available agents
-- Run `/help swarm` to understand the SWARM workflow
+- Run `/project-toolkit:help agents` to learn about available agents
+- Run `/project-toolkit:help swarm` to understand the SWARM workflow
 - See `guides/SWARM-WORKFLOW.md` for detailed workflow documentation

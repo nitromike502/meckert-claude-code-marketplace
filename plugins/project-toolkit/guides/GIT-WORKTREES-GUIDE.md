@@ -202,7 +202,7 @@ git worktree prune
 
 ## Dependency Evaluation Algorithm
 
-When multiple tickets are provided to `/swarm`, the system evaluates dependencies:
+When multiple tickets are provided to `/project-toolkit:swarm`, the system evaluates dependencies:
 
 ```
 Input: [TASK-A, TASK-B, TASK-C]

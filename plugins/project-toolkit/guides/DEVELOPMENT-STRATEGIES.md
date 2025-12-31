@@ -40,9 +40,9 @@ Different types of work require different development approaches. This project u
 Select development strategy at session start:
 
 ```bash
-/dev-strategy approved   # For complex features
-/dev-strategy rapid      # For straightforward changes
-/dev-strategy parallel   # For independent tasks
+/project-toolkit:dev-strategy approved   # For complex features
+/project-toolkit:dev-strategy rapid      # For straightforward changes
+/project-toolkit:dev-strategy parallel   # For independent tasks
 ```
 
 **Effect:** All agents adapt their workflow to selected strategy.
@@ -73,7 +73,7 @@ Select development strategy at session start:
 `.claude/templates/development-strategies.md`
 
 **Slash Command:**
-`.claude/commands/dev-strategy.md`
+`.claude/commands/project-toolkit:dev-strategy.md`
 
 **Key Principle:** Right strategy for right task = maximum efficiency with minimal rework.
 
@@ -81,7 +81,7 @@ Select development strategy at session start:
 
 1. **At session start:** Assess the type of work you'll be doing
 2. **Choose your strategy:** Use the "When to Use" criteria above
-3. **Execute the command:** Run `/dev-strategy <type>` to set the strategy
+3. **Execute the command:** Run `/project-toolkit:dev-strategy <type>` to set the strategy
 4. **Follow the pattern:** Adapt your workflow to match the selected strategy
 5. **Review results:** Compare actual vs. expected time impact
 
@@ -127,8 +127,8 @@ Select development strategy at session start:
 - 40-62% time savings with parallelization
 
 **Commands:**
-- `/project-status` - Intelligent ticket selection
-- `/swarm <ticket-id>` - Execute SWARM workflow
+- `/project-toolkit:project-status` - Intelligent ticket selection
+- `/project-toolkit:swarm <ticket-id>` - Execute SWARM workflow
 
 **Complete Documentation:** `docs/guides/SWARM-WORKFLOW.md`
 
@@ -158,5 +158,5 @@ All development work must adhere to project coding standards:
 - **CODING-STANDARDS.md:** Coding standards and best practices
 - **TESTING-GUIDE.md:** Test execution and fixture standards
 - **development-strategies.md template:** Detailed implementation patterns
-- **/dev-strategy command:** Interactive strategy selection tool
+- **/project-toolkit:dev-strategy command:** Interactive strategy selection tool
 - **Workflow analyses:** Real-world examples in `/docs/sessions/workflow-analyses/`

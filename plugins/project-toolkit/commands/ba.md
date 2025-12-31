@@ -21,7 +21,7 @@ Analyze and solution features using deep reasoning (ultrathink mode) and special
 **Documentation Structure**:
 All BA session outputs are stored in dedicated directories that mirror `docs/` structure:
 ```
-docs/ba-sessions/YYYYMMDD-HHMMSS-[topic-slug]/
+docs/project-toolkit:ba-sessions/YYYYMMDD-HHMMSS-[topic-slug]/
 ├── analysis.md              # Main BA analysis document
 ├── prd/                     # Product requirements
 ├── wireframes/              # UI/UX designs
@@ -107,7 +107,7 @@ After gathering all clarifying information, create a dedicated BA session direct
 
 2. **Create directory structure:**
 ```bash
-mkdir -p "docs/ba-sessions/YYYYMMDD-HHMMSS-topic-slug"/{prd,wireframes,guides}
+mkdir -p "docs/project-toolkit:ba-sessions/YYYYMMDD-HHMMSS-topic-slug"/{prd,wireframes,guides}
 ```
 
 All subsequent deliverables will be saved in this session directory.
@@ -138,7 +138,7 @@ Deliverables:
 2. Interaction flow diagrams
 3. UI component specifications
 
-Save all wireframes to: docs/ba-sessions/[session-dir]/wireframes/
+Save all wireframes to: docs/project-toolkit:ba-sessions/[session-dir]/wireframes/
 ```
 
 ### B. Documentation Phase (@documenter)
@@ -150,13 +150,13 @@ Save all wireframes to: docs/ba-sessions/[session-dir]/wireframes/
 Create comprehensive documentation for: [feature description]
 
 Based on:
-- Design artifacts: docs/ba-sessions/[session-dir]/wireframes/
+- Design artifacts: docs/project-toolkit:ba-sessions/[session-dir]/wireframes/
 - Clarifying responses: [summarize user answers]
 
 Deliverables:
 
 1. **PRD (Product Requirements Document)**
-   Location: docs/ba-sessions/[session-dir]/prd/PRD-[Feature-Name].md
+   Location: docs/project-toolkit:ba-sessions/[session-dir]/prd/PRD-[Feature-Name].md
    Content:
    - Executive summary
    - Business objectives & success criteria
@@ -167,7 +167,7 @@ Deliverables:
    - Timeline estimate (Epic/Story/Task breakdown)
 
 2. **Implementation Guide**
-   Location: docs/ba-sessions/[session-dir]/guides/implementation-guide.md
+   Location: docs/project-toolkit:ba-sessions/[session-dir]/guides/implementation-guide.md
    Content:
    - Architecture overview
    - Step-by-step implementation plan
@@ -180,7 +180,7 @@ Deliverables:
 
 After all subagents complete their work, create a master analysis document:
 
-**File:** `docs/ba-sessions/[session-dir]/analysis.md`
+**File:** `docs/project-toolkit:ba-sessions/[session-dir]/analysis.md`
 
 **Content structure:**
 ```markdown
@@ -222,12 +222,12 @@ After all subagents complete their work, create a master analysis document:
 ## Next Steps
 1. Review and approve this analysis
 2. Move approved documents to main docs/ structure
-3. Create Epic/Story/Task breakdown with /plan or /swarm
+3. Create Epic/Story/Task breakdown with /project-toolkit:plan or /project-toolkit:swarm
 4. Begin development
 
 ## Session Artifacts
 All documents for this analysis session are in:
-`docs/ba-sessions/[session-dir]/`
+`docs/project-toolkit:ba-sessions/[session-dir]/`
 ```
 
 ## Phase 6: Present Deliverables & Next Steps
@@ -238,7 +238,7 @@ Present a summary to the user:
 # Business Analysis Complete: [Feature Name]
 
 ## Session Directory
-All deliverables saved to: `docs/ba-sessions/[session-dir]/`
+All deliverables saved to: `docs/project-toolkit:ba-sessions/[session-dir]/`
 
 ## Deliverables Created
 - Master Analysis Document: analysis.md
@@ -262,11 +262,11 @@ All deliverables saved to: `docs/ba-sessions/[session-dir]/`
 
 ### 2. Create Tickets
 When ready to begin development:
-- Use `/plan` to create Epic/Story/Task breakdown from PRD
-- Or use `/swarm` to start working directly
+- Use `/project-toolkit:plan` to create Epic/Story/Task breakdown from PRD
+- Or use `/project-toolkit:swarm` to start working directly
 
 ### 3. Begin Development
-- Use `/swarm` command to start working on tickets
+- Use `/project-toolkit:swarm` command to start working on tickets
 
 Would you like me to:
 - Refine any of the analysis or designs?
@@ -287,7 +287,7 @@ Would you like me to:
 
 ### Example 1: User provides feature idea immediately
 ```
-User: /ba Add batch export functionality for all project configs
+User: /project-toolkit:ba Add batch export functionality for all project configs
 
 BA Response:
 - Uses ultrathink to analyze the request
@@ -300,7 +300,7 @@ BA Response:
 
 ### Example 2: User invokes without arguments
 ```
-User: /ba
+User: /project-toolkit:ba
 
 BA Response: "What feature or problem would you like me to solution?"
 

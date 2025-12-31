@@ -28,7 +28,7 @@ Before planning, check for project-specific documentation:
 </context>
 
 <execution>
-Invoke the `implementation-manager` agent to:
+Invoke the `project-toolkit:implementation-manager` agent to:
 
 ## Step 1: Assess Current Project State
 1. Read project documentation to understand structure and success criteria
@@ -79,7 +79,7 @@ Provide clear summary including:
 - High-level overview of epics and stories created
 - **Confirmation that all tasks are 30-60 minutes max**
 - **Number of tasks created and their sizing distribution**
-- Recommendation to run `/swarm` to begin execution
+- Recommendation to run `/project-toolkit:swarm` to begin execution
 
 ## Step 5: Validate Task Sizing
 Before completing, perform final validation:

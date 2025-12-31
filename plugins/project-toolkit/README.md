@@ -36,14 +36,14 @@ Project Toolkit provides a complete development team of specialized AI agents, w
 
 | Command | Description |
 |---------|-------------|
-| `/setup` | Configure project-toolkit for your project (run first!) |
-| `/swarm` | Execute coordinated multi-agent SWARM workflow (supports multiple tickets with git worktrees) |
-| `/ba` | Business Analyst - feature solutioning with deep reasoning |
-| `/plan` | Project planning and ticket creation |
-| `/docs` | Review and update project documentation |
-| `/dev-strategy` | Select development strategy (approved, rapid, parallel) |
-| `/project-status` | Check project status and recommend next tickets |
-| `/help` | Get help using the plugin |
+| `/project-toolkit:setup` | Configure project-toolkit for your project (run first!) |
+| `/project-toolkit:swarm` | Execute coordinated multi-agent SWARM workflow (supports multiple tickets with git worktrees) |
+| `/project-toolkit:ba` | Business Analyst - feature solutioning with deep reasoning |
+| `/project-toolkit:plan` | Project planning and ticket creation |
+| `/project-toolkit:docs` | Review and update project documentation |
+| `/project-toolkit:dev-strategy` | Select development strategy (approved, rapid, parallel) |
+| `/project-toolkit:project-status` | Check project status and recommend next tickets |
+| `/project-toolkit:help` | Get help using the plugin |
 
 ### Guides (10)
 
@@ -87,7 +87,7 @@ claude --add-plugin /path/to/project-toolkit
 Run the setup wizard to automatically detect your tech stack and create configuration:
 
 ```
-/setup
+/project-toolkit:setup
 ```
 
 ### Configuration Files
@@ -134,20 +134,20 @@ See `templates/project-toolkit.local.md` for a complete template.
 
 1. **Set up the plugin for your project:**
    ```
-   /setup
+   /project-toolkit:setup
    ```
    This detects your tech stack and creates configuration files.
 
 2. **Check project status:**
    ```
-   /project-status
+   /project-toolkit:project-status
    ```
    Shows current state and recommends next tickets.
 
 3. **Execute SWARM workflow:**
    ```
-   /swarm TICKET-123              # Single ticket
-   /swarm TASK-1 TASK-2 TASK-3    # Multiple tickets (parallel with worktrees)
+   /project-toolkit:swarm TICKET-123              # Single ticket
+   /project-toolkit:swarm TASK-1 TASK-2 TASK-3    # Multiple tickets (parallel with worktrees)
    ```
    Coordinates the full development workflow through all phases.
    Multiple tickets are analyzed for dependencies and executed in parallel where possible using git worktrees.
@@ -175,19 +175,19 @@ Agents automatically look for project-specific documentation first, then fall ba
 ### Development Approved
 Best for complex features requiring discussion before implementation.
 ```
-/dev-strategy approved
+/project-toolkit:dev-strategy approved
 ```
 
 ### Rapid Iteration
 Best for simple, obvious changes.
 ```
-/dev-strategy rapid
+/project-toolkit:dev-strategy rapid
 ```
 
 ### Parallel Execution
 Best for multiple independent tasks.
 ```
-/dev-strategy parallel
+/project-toolkit:dev-strategy parallel
 ```
 
 ## Best Practices
