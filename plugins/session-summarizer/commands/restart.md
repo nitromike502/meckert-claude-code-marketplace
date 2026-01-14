@@ -1,6 +1,6 @@
 ---
-name: restart
-description: Continue work from a previous session using the saved summary. Use this at the start of a new session after running /summarize.
+name: session-summarizer:restart
+description: Continue work from a previous session using the saved summary. Use this at the start of a new session after running /session-summarizer:summarize.
 allowed-tools: Read
 ---
 
@@ -58,5 +58,5 @@ The summary should provide sufficient context to continue. If something critical
 
 If `.claude/session-summary.md` does not exist:
 - Inform the user that no session summary was found
-- Suggest running `/summarize` in their previous session first
+- Suggest running `/session-summarizer:summarize` in their previous session first
 - Explain that this command requires a summary to have been generated already

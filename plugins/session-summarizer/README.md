@@ -36,17 +36,17 @@ claude-code --plugin-dir /home/marketplace/session-summarizer
 When approaching context limits, summarize your current session:
 
 ```bash
-/summarize
+/session-summarizer:summarize
 ```
 
 With git commit first:
 ```bash
-/summarize commit
+/session-summarizer:summarize commit
 ```
 
 With additional instructions for the summarizer:
 ```bash
-/summarize Focus on the API changes and database schema decisions
+/session-summarizer:summarize Focus on the API changes and database schema decisions
 ```
 
 **What happens:**
@@ -60,7 +60,7 @@ With additional instructions for the summarizer:
 In a new Claude Code session, load your previous context:
 
 ```bash
-/restart
+/session-summarizer:restart
 ```
 
 **What happens:**
@@ -72,7 +72,7 @@ In a new Claude Code session, load your previous context:
 ## How It Works
 
 ### Session Marker System
-The `/summarize` command generates a UUID that marks your current position in the transcript. This allows the agent to locate and parse exactly the right session data.
+The `/session-summarizer:summarize` command generates a UUID that marks your current position in the transcript. This allows the agent to locate and parse exactly the right session data.
 
 ### Transcript Parsing
 The plugin includes a custom parser that converts Claude Code's JSONL transcript format into human-readable text, filtering out noise and focusing on meaningful conversation, decisions, and work.
@@ -124,7 +124,7 @@ Generated summaries follow a consistent format:
 
 ```
 .claude/
-├── session-summary.md          # Latest summary for /restart
+├── session-summary.md          # Latest summary for /session-summarizer:restart
 └── summaries/                  # Archived summaries (optional)
     ├── 2025-01-15-143022-summary.md
     ├── 2025-01-15-160845-summary.md
@@ -139,12 +139,12 @@ Generated summaries follow a consistent format:
 
 ## Tips
 
-1. **When to Summarize**: Run `/summarize` when you notice:
+1. **When to Summarize**: Run `/session-summarizer:summarize` when you notice:
    - Responses becoming slower
    - Context window warnings
    - Before switching to a different task
 
-2. **Git Integration**: Use `/summarize commit` to create a clean checkpoint with version control
+2. **Git Integration**: Use `/session-summarizer:summarize commit` to create a clean checkpoint with version control
 
 3. **Custom Instructions**: Add specific instructions to focus the summarizer on what matters most
 

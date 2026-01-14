@@ -1,5 +1,5 @@
 ---
-name: migrate-existing
+name: docs-management:migrate-existing
 description: Analyze existing project documentation and migrate it to the standard Diataxis-based structure. Creates a migration plan before making changes.
 allowed-tools: Task, Skill
 ---

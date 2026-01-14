@@ -1,5 +1,5 @@
 ---
-name: setup-project
+name: docs-management:setup-project
 description: Initialize the standard documentation directory structure in a new project following the Diataxis framework and documentation standards.
 allowed-tools: Task, Skill
 ---

@@ -1,5 +1,5 @@
 ---
-name: swarm
+name: project-toolkit:swarm
 description: Execute SWARM (Specialized Workflow with Autonomous Resource Management) development workflow for coordinated multi-agent implementation
 tools: Task
 argument-hint: "[ticket(s)] [instructions] - One or more ticket IDs (space/comma separated) and/or custom instructions"

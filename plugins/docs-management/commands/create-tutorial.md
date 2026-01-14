@@ -1,5 +1,5 @@
 ---
-name: create-tutorial
+name: docs-management:create-tutorial
 description: Create learning-oriented tutorial documentation following the Diataxis framework. Tutorials help users learn by doing with step-by-step guidance.
 allowed-tools: Task, Skill
 ---

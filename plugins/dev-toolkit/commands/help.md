@@ -1,5 +1,5 @@
 ---
-name: help
+name: dev-toolkit:help
 description: Get help using the Project Toolkit plugin
 arguments:
   - name: topic

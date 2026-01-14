@@ -1,5 +1,5 @@
 ---
-name: create-reference
+name: docs-management:create-reference
 description: Create information-oriented reference documentation following the Diataxis framework. Reference docs provide factual, complete information for lookup.
 allowed-tools: Task, Skill
 ---

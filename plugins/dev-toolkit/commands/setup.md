@@ -1,4 +1,5 @@
 ---
+name: dev-toolkit:setup
 description: Configure dev-toolkit for your project - detects tech stack, creates config and templates
 arguments:
   - name: mode

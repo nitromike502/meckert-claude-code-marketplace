@@ -1,5 +1,5 @@
 ---
-name: summarize
+name: session-summarizer:summarize
 description: Summarize the current session for continuation in a new context window. Optionally commits changes first.
 argument-hint: [commit] [additional instructions for summarizer]
 allowed-tools: Bash, Task
@@ -7,7 +7,7 @@ allowed-tools: Bash, Task
 
 # Session Summarization
 
-You are executing the `/summarize` command to create a structured summary of the current Claude Code session for seamless continuation in a fresh context window.
+You are executing the `/session-summarizer:summarize` command to create a structured summary of the current Claude Code session for seamless continuation in a fresh context window.
 
 ## Step 1: Verify Project Root
 
@@ -79,7 +79,7 @@ Session summary created successfully at .claude/session-summary.md
 
 You can now:
 - Start a new Claude Code session to reset context window
-- Run /restart in the new session to continue where you left off
+- Run /session-summarizer:restart in the new session to continue where you left off
 - Review the summary at .claude/session-summary.md
 [If archived: - Access archived summary at .claude/summaries/<timestamp>-summary.md]
 ```
@@ -95,4 +95,4 @@ If the agent reports that it cannot find the transcript file with the UUID:
 
 - This command is designed to be run when approaching context window limits
 - The summary preserves all key context: current focus, decisions, work in progress, next steps
-- The `/restart` command in a new session will read this summary to continue seamlessly
+- The `/session-summarizer:restart` command in a new session will read this summary to continue seamlessly

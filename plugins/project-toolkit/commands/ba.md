@@ -1,5 +1,5 @@
 ---
-name: ba
+name: project-toolkit:ba
 description: Business Analyst - Solution features using deep reasoning and specialized subagents
 color: green
 ---

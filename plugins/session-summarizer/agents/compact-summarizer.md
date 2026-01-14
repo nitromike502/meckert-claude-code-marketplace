@@ -1,6 +1,6 @@
 ---
 name: compact-summarizer
-description: ONLY invoked via /summarize command. Analyzes a Claude Code session transcript and generates a structured summary for seamless continuation in a new context window.
+description: ONLY invoked via /session-summarizer:summarize command. Analyzes a Claude Code session transcript and generates a structured summary for seamless continuation in a new context window.
 tools: Bash, Read, Write, Grep, Glob, AskUserQuestion
 model: haiku
 ---
@@ -58,7 +58,7 @@ To proceed, please:
 
 2. Look for your session ID in the output (it will be a UUID or session identifier)
 
-3. Run /summarize again, but this time I'll need you to restart this agent with the session ID.
+3. Run /session-summarizer:summarize again, but this time I'll need you to restart this agent with the session ID.
 
 For now, please obtain your session ID using /tasks and let me know what it is.
 ```
@@ -198,14 +198,14 @@ Provide a clear confirmation message to the user:
 
 You can now:
 - Start a new Claude Code session to reset context window
-- Run /restart in the new session to continue where you left off
+- Run /session-summarizer:restart in the new session to continue where you left off
 - Review the summary anytime at .claude/session-summary.md
 [If archived: - Access archived summaries in .claude/summaries/]
 ```
 
 ## Additional Instructions
 
-If the user provided additional instructions in their `/summarize` command, apply them to your analysis. They may ask you to:
+If the user provided additional instructions in their `/session-summarizer:summarize` command, apply them to your analysis. They may ask you to:
 - Focus on specific aspects of the session
 - Ignore certain topics or tangents
 - Emphasize particular decisions or context

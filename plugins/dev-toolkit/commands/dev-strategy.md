@@ -1,5 +1,5 @@
 ---
-name: dev-strategy
+name: dev-toolkit:dev-strategy
 description: Select development strategy for current session (approved, rapid, or parallel)
 allowed-tools:
   - Read

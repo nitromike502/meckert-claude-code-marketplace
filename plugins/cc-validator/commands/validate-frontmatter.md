@@ -1,4 +1,5 @@
 ---
+name: cc-validator:validate-frontmatter
 description: Validate and fix YAML frontmatter in Claude Code agent and command files
 argument-hint: <path> [--type agents|commands|all]
 allowed-tools: Bash, Read, Edit, Glob, AskUserQuestion, Task

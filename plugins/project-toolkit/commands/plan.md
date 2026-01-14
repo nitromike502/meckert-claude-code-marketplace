@@ -1,5 +1,5 @@
 ---
-name: plan
+name: project-toolkit:plan
 description: Break down features into Epic/Story/Task tickets using implementation-manager
 ---
 

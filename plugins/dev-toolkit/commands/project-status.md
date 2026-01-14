@@ -1,5 +1,5 @@
 ---
-name: project-status
+name: dev-toolkit:project-status
 description: Check project status and recommend next tickets to work on
 ---
 

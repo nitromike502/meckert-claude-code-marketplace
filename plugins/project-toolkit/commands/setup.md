@@ -1,4 +1,5 @@
 ---
+name: project-toolkit:setup
 description: Configure project-toolkit for your project - detects tech stack, creates config and templates
 arguments:
   - name: mode
