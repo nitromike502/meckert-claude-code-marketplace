@@ -47,7 +47,7 @@
     },
     {
       "name": "docs-management",
-      "version": "1.0.0-beta.3",
+      "version": "1.0.0-beta.4",
       "description": "Documentation management plugin with Diataxis framework support. Create, organize, and maintain project documentation following industry standards.",
       "source": "./plugins/docs-management",
       "category": "documentation",

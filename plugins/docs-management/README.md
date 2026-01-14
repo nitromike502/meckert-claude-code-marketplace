@@ -79,26 +79,24 @@ The plugin establishes this standard structure:
     └── assets/               # Images, diagrams
 ```
 
-## Templates
+## Skills
 
-### Available Templates
+The plugin provides writer skills with embedded templates and quality checklists:
 
-| Template | Location | Use For |
-|----------|----------|---------|
-| Getting Started | `templates/tutorial/` | Tutorials, quick starts |
-| How-to Guide | `templates/how-to-guide/` | Task-oriented guides |
-| Technical Spec | `templates/reference/` | API specs, data models |
-| Research Finding | `templates/reference/` | Research documentation |
-| Architecture Overview | `templates/explanation/` | System architecture |
-| ADR | `templates/explanation/` | Architecture decisions |
+| Skill | Use For |
+|-------|---------|
+| `docs-management:tutorial-writer` | Tutorials, quick starts |
+| `docs-management:how-to-guide-writer` | Task-oriented guides |
+| `docs-management:tech-specs-writer` | API specs, data models |
+| `docs-management:research-findings-writer` | Research documentation |
+| `docs-management:system-overview-writer` | System architecture |
+| `docs-management:adr-writer` | Architecture decisions |
+| `docs-management:documentation-standards` | Overall standards |
 
-### Quality Checklists
-
-Each documentation type has a checklist in `checklists/`:
-- `tutorial-checklist.md`
-- `how-to-guide-checklist.md`
-- `reference-checklist.md`
-- `explanation-checklist.md`
+Each skill includes:
+- Writing guidelines (DO/DON'T)
+- Ready-to-use templates
+- Quality checklists
 
 ## Customization
 
@@ -133,20 +131,9 @@ Create `.claude/docs-management.local.md` for personal preferences (gitignored):
 - Prefer bullet lists over numbered lists for non-sequential items
 ```
 
-## Skills
-
-The plugin provides skills for each documentation type:
-
-| Skill | Purpose |
-|-------|---------|
-| `tutorial` | Guidelines for learning-oriented content |
-| `how-to-guide` | Guidelines for task-oriented content |
-| `reference` | Guidelines for information-oriented content |
-| `explanation` | Guidelines for understanding-oriented content |
-
 ## Agent
 
-The `documentation-engineer` agent can be invoked for complex documentation tasks:
+The `docs-management:documentation-engineer` agent can be invoked for complex documentation tasks:
 
 - Assessing documentation state
 - Identifying gaps
@@ -155,7 +142,7 @@ The `documentation-engineer` agent can be invoked for complex documentation task
 
 ## Standards
 
-Full documentation standards are available in `guides/DOCUMENTATION-STANDARDS.md`, covering:
+Full documentation standards are available in the `docs-management:documentation-standards` skill, covering:
 
 - Project file structure
 - Diátaxis framework details
