@@ -27,6 +27,9 @@ Before starting any ticket operation, check for project-specific configuration:
    - `scripts/fetch-ticket.py` or `scripts/fetch-ticket.js`
    - `.claude/scripts/` for ticket management scripts
 
+4. **Scratch pad integration (when invoked with scratch_pad params):**
+   @${CLAUDE_PLUGIN_ROOT}/guides/SCRATCH-PAD-GUIDE.md
+
 ## Integration Methods
 
 Attempt integration methods in this priority order:

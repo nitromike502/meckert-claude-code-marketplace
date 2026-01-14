@@ -27,6 +27,9 @@ Before starting any testing, check for project-specific documentation:
    - `.claude/dev-toolkit.md` for shared project configuration
    - `.claude/dev-toolkit.local.md` for project-specific configuration (tech stack, test frameworks)
 
+4. **Scratch pad integration (when invoked with scratch_pad params):**
+   @${CLAUDE_PLUGIN_ROOT}/guides/SCRATCH-PAD-GUIDE.md
+
 ## Instructions
 
 When invoked, you must follow these steps:

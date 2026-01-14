@@ -25,6 +25,9 @@ Before starting any git operation, check for project-specific documentation:
    - `.claude/dev-toolkit.md` for shared project configuration
    - `.claude/dev-toolkit.local.md` for project-specific configuration
 
+4. **Scratch pad integration (when invoked with scratch_pad params):**
+   @${CLAUDE_PLUGIN_ROOT}/guides/SCRATCH-PAD-GUIDE.md
+
 ## Project Context
 
 - **SWARM Architecture:** Orchestrator coordinates phases → you batch Git operations → developers implement → code-reviewer approves → you merge

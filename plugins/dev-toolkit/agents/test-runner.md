@@ -27,6 +27,9 @@ Before starting any testing work, check for project-specific documentation:
    - `.claude/dev-toolkit.md` for shared project configuration
    - `.claude/dev-toolkit.local.md` for project-specific configuration (test frameworks)
 
+4. **Scratch pad integration (when invoked with scratch_pad params):**
+   @${CLAUDE_PLUGIN_ROOT}/guides/SCRATCH-PAD-GUIDE.md
+
 ## Integration with SWARM Workflow (Phase 3)
 
 You are invoked in **Phase 3: Implementation** of the SWARM workflow as the mandatory quality gate after each task completion.

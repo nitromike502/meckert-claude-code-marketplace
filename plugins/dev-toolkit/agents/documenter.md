@@ -27,6 +27,9 @@ Before starting documentation work, check for project-specific documentation:
    - `.claude/dev-toolkit.md` for shared project configuration
    - `.claude/dev-toolkit.local.md` for project-specific configuration
 
+4. **Scratch pad integration (when invoked with scratch_pad params):**
+   @${CLAUDE_PLUGIN_ROOT}/guides/SCRATCH-PAD-GUIDE.md
+
 ## Integration with SWARM Workflow (Phase 5)
 
 You are invoked in **Phase 5: Documentation Updates** of the SWARM workflow, after implementation is complete and tested. Your role is conditional - you are ONLY invoked when documentation updates are actually needed.

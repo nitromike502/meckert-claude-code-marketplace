@@ -28,6 +28,9 @@ Before starting any project management activity, check for project-specific docu
    - `.claude/dev-toolkit.md` for shared project configuration
    - `.claude/dev-toolkit.local.md` for project-specific configuration
 
+4. **Scratch pad integration (when invoked with scratch_pad params):**
+   @${CLAUDE_PLUGIN_ROOT}/guides/SCRATCH-PAD-GUIDE.md
+
 ## Ticket Management Responsibilities
 
 **YOU ARE THE PRIMARY TICKET WRITER** - You create all Epic, Story, Task, and Bug tickets for the project.

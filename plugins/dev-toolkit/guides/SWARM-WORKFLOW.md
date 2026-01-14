@@ -50,6 +50,32 @@ The SWARM workflow is built on four foundational principles:
 - Provide quality gates and documentation updates
 - Work can often be parallelized with each other
 
+### Scratch Pad System
+
+The scratch pad system enables efficient context sharing between subagent invocations:
+
+**Session Directory:** `.claude/tickets/{TICKET-ID}/`
+
+**Contents:**
+- `session-tracking.md` - Main agent's session tracking document
+- `index.md` - Registry of all subagent invocations
+- `{NNN}-{agent}-{description}.md` - Individual subagent scratch files
+
+**How It Works:**
+1. Main agent creates session directory and index at Phase 2
+2. Each subagent invocation receives `scratch_pad` parameters (session_dir, invocation_name)
+3. Subagent creates its scratch file with YAML frontmatter and structured sections
+4. Subagent returns brief summary to main agent (100-500 tokens)
+5. Full response stays in scratch file - subsequent subagents can read it directly
+
+**Benefits:**
+- Reduces main agent context consumption
+- Enables direct subagent-to-subagent context sharing
+- Provides complete audit trail for debugging
+- Structured format allows querying (e.g., `grep "status: failed" .claude/tickets/*/`)
+
+**See:** `${CLAUDE_PLUGIN_ROOT}/guides/SCRATCH-PAD-GUIDE.md` for complete integration details
+
 ## Complete SWARM Workflow
 
 **IMPORTANT:** For feature parity work (implementing similar features across entity types), you MUST complete Phase 0: Comparative Analysis before beginning any implementation. This phase prevents costly debugging by ensuring a thorough understanding of existing patterns.
@@ -269,35 +295,45 @@ For complex features (3+ files, new API endpoints, feature parity work, 2+ hour 
    - Create feature branch: `feature/story-3.1-copy-logic`
    - Push feature branch to remote with `-u` flag
 
-2. **Main agent creates session tracking document**
-   - Location: `docs/sessions/tracking/SESSION-STORY-3.1-2025-11-03.md`
-   - Use comprehensive template from `.claude/templates/session-tracking-template.md`
+2. **Main agent creates session directory and documents**
+   - Create directory: `.claude/tickets/{TICKET-ID}/`
+   - Create `session-tracking.md` from template
+   - Create `index.md` for scratch pad invocation registry
+   - Initialize invocation counter at 001
    - Include all plan details from orchestrator
-   - Initialize with current timestamp and git context
-   - **CRITICAL:** This document must be detailed enough to resume session at any point
+   - **CRITICAL:** This directory must contain enough context to resume session at any point
 
 3. **Main agent creates TodoWrite task list**
    - Mirror the structure from tracking document
    - Provides real-time status visibility
    - Updated after each milestone completion
 
-**Session Tracking Document Structure:**
+**Session Directory Structure:**
+```
+.claude/tickets/STORY-3.1/
+├── session-tracking.md    # Main tracking document
+├── index.md               # Scratch pad invocation registry
+├── 001-orchestrator-planning.md
+├── 002-backend-dev-service-structure.md
+├── 003-test-runner-validation.md
+└── ...
+```
+
+**Session Tracking Document (`session-tracking.md`):**
 ```markdown
 # Session Tracking: STORY-3.1 - Backend Copy Service Infrastructure
 
 **Created:** 2025-11-03 14:23:00
 **Branch:** feature/story-3.1-copy-logic
-**Parent Branch:** phase-3
+**Session Directory:** .claude/tickets/STORY-3.1/
 **Status:** in-progress
+
+## Scratch Pad Reference
+**Index File:** [index.md](./index.md)
+**Total Invocations:** 3
 
 ## Execution Plan (from Orchestrator)
 [Full plan details...]
-
-## Task Breakdown & Status
-### ⏳ Pending Tasks
-- TASK-3.1.1: Create backend service structure
-- TASK-3.1.2: Implement path validation
-- TASK-3.1.3: Add conflict detection
 
 ## Critical Context for Session Resumption
 [Detailed context that allows fresh session to continue work...]
@@ -560,7 +596,7 @@ If documentation updates needed:
    - Push to remote
 
 **Note on Session Tracking Document:**
-The `docs/sessions/tracking/SESSION-*.md` file is NOT maintained by documenter. Main agent creates and maintains this file throughout the workflow as a working document for session continuity.
+The session tracking document (`.claude/tickets/{TICKET-ID}/session-tracking.md`) is NOT maintained by documenter. Main agent creates and maintains this file throughout the workflow as a working document for session continuity.
 
 ---
 
@@ -569,6 +605,12 @@ The `docs/sessions/tracking/SESSION-*.md` file is NOT maintained by documenter. 
 **Objective:** Create pull request and conduct comprehensive code review
 
 **Main Agent Actions:**
+
+0. **Untrack session files before PR**
+   - Session files should not be included in the PR
+   - Run: `git rm -r --cached .claude/tickets/{TICKET-ID}/`
+   - Commit: `chore: untrack session files before PR`
+   - Files stay on disk for reference during PR review
 
 1. **Invoke git-expert** to create pull request
    - Generate PR title from ticket information
@@ -667,22 +709,18 @@ Reply with "approved" to merge, or provide feedback for changes.
 
 **Option A: User Approves**
 
-1. **Main agent moves session tracking doc to archive**
-   - Move `docs/sessions/tracking/SESSION-STORY-3.1-2025-11-03.md` to `.deleted/docs/sessions/tracking/`
-   - Preserves git history and allows recovery if needed
-   - Use `git mv` (not direct file deletion)
-
-2. **Main agent invokes git-expert**
-   - Commit tracking doc removal: `chore: archive session tracking for STORY-3.1`
-   - Push commit
-
-3. **Main agent invokes git-expert** to merge PR
+1. **Main agent invokes git-expert** to merge PR
    - Squash-merge PR to phase branch
    - Delete feature branch (local and remote)
    - Checkout phase branch
    - Pull latest changes
 
-4. **Main agent invokes agile-ticket-manager**
+2. **Main agent deletes session directory**
+   - Session files were untracked in Phase 6 (before PR creation)
+   - Delete: `rm -rf .claude/tickets/{TICKET-ID}/`
+   - PR and git history contain the authoritative record
+
+3. **Main agent invokes agile-ticket-manager**
    - Move ticket from `review` to `done`
    - Update completion timestamp
    - Document merge commit hash
@@ -989,40 +1027,45 @@ PHASE 1-2: Session Init & Git Setup
 8. Invoke ticket-manager (move to in-progress)
 9. Present plan to user (get approval)
 10. Invoke git-specialist (create branch)
-11. Create session tracking doc
-12. Create TodoWrite list
+11. Create session directory (.claude/tickets/{TICKET-ID}/)
+12. Create session-tracking.md and index.md
+13. Initialize invocation counter
+14. Create TodoWrite list
 
 PHASE 3: Implementation (for each task)
-13. Invoke developer (implement + validate manually)
-14. Invoke git-specialist (commit)
-15. Update tracking & TodoWrite
+15. Invoke developer with scratch_pad params
+16. Update index.md after subagent returns
+17. Invoke git-specialist (commit)
+18. Update tracking & TodoWrite
 
 PHASE 4: Code Review & Test (once after all tasks)
-16. Invoke test-engineer (run targeted tests)
-17. Invoke test-engineer (run full test suite)
-18. If failures: Return to developer, fix, re-run targeted tests, then full suite
+19. Invoke test-engineer (run targeted tests)
+20. Invoke test-engineer (run full test suite)
+21. If failures: Return to developer, fix, re-run
 
 PHASE 5: Documentation
-19. Invoke documenter (if needed)
-20. Invoke git-specialist (commit docs)
+22. Invoke documenter (if needed)
+23. Invoke git-specialist (commit docs)
 
 PHASE 6: PR Creation
-21. Invoke git-specialist (create PR)
-22. Invoke ticket-manager (move to review)
-23. Invoke code-reviewer (analyze)
+24. Untrack session files (git rm -r --cached)
+25. Invoke git-specialist (create PR)
+26. Invoke ticket-manager (move to review)
+27. Invoke code-reviewer (analyze)
 
 PHASE 7: User Approval & Merge
-24. Present to user (wait for approval)
-25. Move tracking doc to .deleted/
-26. Invoke git-specialist (merge PR)
-27. Invoke ticket-manager (move to done)
-28. Present final summary
+28. Present to user (wait for approval)
+29. Invoke git-specialist (merge PR)
+30. Delete session directory (rm -rf)
+31. Invoke ticket-manager (move to done)
+32. Present final summary
 ```
 
 ---
 
 ## Related Documentation
 
+- **Scratch Pad Guide:** `${CLAUDE_PLUGIN_ROOT}/guides/SCRATCH-PAD-GUIDE.md` - Subagent scratch pad integration
 - **Feature Parity Implementation:** `docs/guides/FEATURE-PARITY-IMPLEMENTATION-GUIDE.md` - Comprehensive guide for implementing features across entity types
 - **Git Workflow:** `docs/guides/GIT-WORKFLOW.md` - Feature branch workflow and commit conventions
 - **Testing Guide:** `docs/guides/TESTING-GUIDE.md` - Test execution and quality gates
@@ -1087,5 +1130,10 @@ PHASE 7: User Approval & Merge
 
 ---
 
-**Last Updated:** December 29, 2025
-**Version:** 1.3
+**Last Updated:** December 31, 2025
+**Version:** 2.0
+**Changes in v2.0:**
+- Added scratch pad system for subagent context sharing
+- Moved session directory to `.claude/tickets/{TICKET-ID}/`
+- Added Phase 6 step to untrack session files before PR
+- Added Phase 7 step to delete session directory after merge

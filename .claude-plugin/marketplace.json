@@ -9,9 +9,9 @@
       "name": "file-deleter",
       "version": "1.0.0",
       "description": "Safe file deletion system that moves files to .deleted/ trash folder instead of permanently deleting them. Includes PreToolUse hook to block rm commands and redirect to safe deletion skill.",
-	  "category": "workflow",
+      "category": "workflow",
       "source": "./plugins/file-deleter",
-	  "tags": ["filesystem", "archiving", "security"]
+      "tags": ["filesystem", "archiving", "security"]
     },
 	{
       "name": "session-summarizer",
@@ -39,11 +39,19 @@
     },
     {
       "name": "dev-toolkit",
-      "version": "1.3.0",
+      "version": "1.0.0-beta.2",
       "description": "Multi-agent development workflow toolkit with SWARM methodology for coordinated software development",
       "source": "./plugins/dev-toolkit",
       "category": "workflow",
       "tags": ["swarm", "multi-agent", "workflow", "development", "testing", "code-review", "git", "project-management"]
+    },
+    {
+      "name": "docs-management",
+      "version": "1.0.0-beta.1",
+      "description": "Documentation management plugin with Diataxis framework support. Create, organize, and maintain project documentation following industry standards.",
+      "source": "./plugins/docs-management",
+      "category": "documentation",
+      "tags": ["documentation", "diataxis", "technical-writing", "tutorials", "how-to-guides", "reference", "architecture", "standards"]
     }
   ]
 }

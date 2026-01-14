@@ -28,6 +28,9 @@ Before starting any testing work, check for project-specific documentation:
    - `.claude/dev-toolkit.md` for shared project configuration
    - `.claude/dev-toolkit.local.md` for project-specific configuration
 
+4. **Scratch pad integration (when invoked with scratch_pad params):**
+   @${CLAUDE_PLUGIN_ROOT}/guides/SCRATCH-PAD-GUIDE.md
+
 ## Core Responsibilities
 
 When invoked, you are responsible for:

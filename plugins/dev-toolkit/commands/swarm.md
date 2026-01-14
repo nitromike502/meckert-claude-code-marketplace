@@ -301,21 +301,34 @@ git worktree prune
 - Create feature branch: `feature/[ticket-id]-description`
 - Push feature branch to remote
 
-### Step 2: Main Agent Creates Session Tracking Document
+### Step 2: Main Agent Creates Session Directory and Documents
 
-**CRITICAL: Main agent creates this, NOT documenter**
+**CRITICAL: Main agent creates these, NOT documenter**
 
-**Location:** `docs/sessions/tracking/SESSION-[TICKET-ID]-[YYYY-MM-DD].md`
+**Session Directory:** `.claude/tickets/{TICKET-ID}/`
 
-**Content:**
-- Execution plan from orchestrator (full details)
-- Task breakdown with acceptance criteria
-- Git context (branch names)
-- Critical context for session resumption
-- Parallelization decisions
-- All timestamps and metadata
+**Main agent creates:**
 
-**Purpose:** This document must be detailed enough for a fresh session to resume work at any point.
+1. **Session directory:**
+   ```bash
+   mkdir -p .claude/tickets/{TICKET-ID}
+   ```
+
+2. **Session tracking document:** `.claude/tickets/{TICKET-ID}/session-tracking.md`
+   - Use template from `${CLAUDE_PLUGIN_ROOT}/templates/session-tracking-template.md`
+   - Execution plan from orchestrator (full details)
+   - Task breakdown with acceptance criteria
+   - Git context (branch names)
+   - Critical context for session resumption
+
+3. **Scratch pad index:** `.claude/tickets/{TICKET-ID}/index.md`
+   - Use template from `${CLAUDE_PLUGIN_ROOT}/templates/scratch-pad-index-template.md`
+   - Registry of all subagent invocations
+   - Updated after each subagent completes
+
+4. **Initialize invocation counter:** Start at 001
+
+**Purpose:** This session directory contains all tracking artifacts and subagent scratch files. Must be detailed enough for a fresh session to resume work.
 
 ### Step 3: Main Agent Creates TodoWrite Task List
 
@@ -323,6 +336,42 @@ git worktree prune
 - Mirror structure from session tracking document
 - Provides real-time status visibility
 - Updated after each milestone completion
+
+### Scratch Pad: Subagent Invocation Pattern
+
+**When invoking ANY subagent, include scratch pad parameters:**
+
+```yaml
+scratch_pad:
+  session_dir: ".claude/tickets/{TICKET-ID}"
+  invocation_name: "{NNN}-{agent}-{description}"
+```
+
+**Invocation naming convention:**
+- `{NNN}`: Zero-padded sequence number (001, 002, 003...)
+- `{agent}`: Agent type (orchestrator, backend-dev, test-runner, etc.)
+- `{description}`: Brief task description in kebab-case (max 30 chars)
+
+**Examples:**
+- `001-orchestrator-planning`
+- `002-backend-dev-auth-service`
+- `003-test-runner-auth-tests`
+- `004-code-reviewer-pr-review`
+
+**After each subagent returns:**
+1. Extract scratch pad file path from response
+2. Update `.claude/tickets/{TICKET-ID}/index.md` with new invocation entry
+3. Increment invocation counter
+4. Update session tracking document with progress
+
+**Subagent response format:**
+```
+Scratch Pad: .claude/tickets/{TICKET-ID}/{invocation_name}.md
+
+{Brief response summary - 100-500 tokens}
+```
+
+The main agent does NOT need to read the full scratch file unless debugging. Subsequent subagents can read previous scratch files directly for detailed context.
 
 ---
 
@@ -405,6 +454,17 @@ git worktree prune
 ---
 
 ## Phase 6: PR Creation
+
+### Step 0: Untrack Session Files
+
+**Before creating PR, untrack session files (keep on disk for reference):**
+
+```bash
+git rm -r --cached .claude/tickets/{TICKET-ID}/
+git commit -m "chore: untrack session files before PR"
+```
+
+**Why:** Session files are working artifacts, not PR deliverables. They stay on disk during PR review for debugging/reference, but are not included in the PR.
 
 ### Step 1: Main Agent Invokes git-expert
 
@@ -494,15 +554,18 @@ Request user decision:
 
 ### Step 2: User Approves - Cleanup & Merge
 
-**Main agent moves session tracking doc to archive:**
-- Move `docs/sessions/tracking/SESSION-*.md` to `.deleted/docs/sessions/tracking/`
-- Use `git mv` to preserve history
-
 **Main agent invokes git-expert to merge PR:**
 - Squash-merge PR
 - Delete feature branch
 - Checkout main/development branch
 - Pull latest changes
+
+**Main agent deletes session directory:**
+```bash
+rm -rf .claude/tickets/{TICKET-ID}/
+```
+
+**Why:** Session files were untracked in Phase 6 and kept on disk only for PR review reference. After merge approval, they can be safely deleted. The PR and git history contain the authoritative record.
 
 **Update ticket status to done.**
 

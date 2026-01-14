@@ -24,6 +24,25 @@
 
 ---
 
+## Scratch Pad Reference
+
+**Session Directory:** `.claude/tickets/[TICKET-ID]/`
+**Index File:** [index.md](./index.md)
+**Total Invocations:** [count]
+
+| Phase | Seq | File | Agent | Status |
+|-------|-----|------|-------|--------|
+| Planning | 001 | [001-orchestrator-planning.md](./001-orchestrator-planning.md) | orchestrator | completed |
+| Implementation | 002 | [002-backend-dev-{task}.md](./002-backend-dev-{task}.md) | backend-dev | completed |
+| Implementation | 003 | [003-frontend-dev-{task}.md](./003-frontend-dev-{task}.md) | frontend-dev | in_progress |
+| Testing | - | - | test-runner | pending |
+| Review | - | - | code-reviewer | pending |
+
+**Reading Previous Context:**
+Subagents can read previous scratch files directly from this directory for detailed context without consuming main agent tokens.
+
+---
+
 ## Execution Plan (from Orchestrator)
 
 ### Identified Tasks
@@ -499,10 +518,10 @@
   - Ensure no tasks left in `in-progress` or `todo` status
   - Confirm ticket hierarchy reflects completion
 
-- [ ] **Archive session tracking document**
-  - Move this document from `docs/sessions/tracking/` to `docs/sessions/completed/`
-  - Preserve all content (do NOT delete)
-  - Verify document accessible in completed directory
+- [ ] **Delete session directory**
+  - Session files were untracked before PR (Phase 6)
+  - Delete entire session directory: `rm -rf .claude/tickets/[TICKET-ID]/`
+  - PR and git history contain the authoritative record
 
 - [ ] **Verify feature branch cleanup**
   - Confirm feature branch deleted locally (`git branch`)
@@ -540,10 +559,10 @@
    - Tasks Moved: [count] tasks
    - Result: ✅ Success | ❌ Failed - [reason]
 
-3. **Session Tracking Archive:**
+3. **Session Directory Cleanup:**
    - Time: [HH:MM:SS]
-   - Original Path: `docs/sessions/tracking/SESSION-[TICKET-ID]-[DATE].md`
-   - New Path: `docs/sessions/completed/SESSION-[TICKET-ID]-[DATE].md`
+   - Path Deleted: `.claude/tickets/[TICKET-ID]/`
+   - Files Removed: [count] scratch files + index.md + session-tracking.md
    - Result: ✅ Success | ❌ Failed - [reason]
 
 4. **Branch Cleanup Verification:**
@@ -605,19 +624,24 @@ Ready to start next ticket or end session.
 **For Main Agent:**
 
 1. **Create this document at session start (Phase 2)** using this template
-2. **Location:** `docs/sessions/tracking/SESSION-[TICKET-ID]-[YYYY-MM-DD].md`
-3. **Update after each milestone:**
+2. **Location:** `.claude/tickets/[TICKET-ID]/session-tracking.md`
+3. **Also create in session directory:**
+   - `index.md` - Scratch pad invocation registry
+   - Subagent scratch files as invocations occur
+4. **Update after each milestone:**
    - After each task completion
    - After each commit
    - After any significant decision
    - After encountering and resolving issues
-4. **Keep "Critical Context for Session Resumption" comprehensive**
+5. **Keep "Critical Context for Session Resumption" comprehensive**
    - Write as if a fresh session needs to continue work
    - Include enough detail to understand state fully
    - Document WHY not just WHAT
-5. **Move to `.deleted/` when PR merged (Phase 7)**
-   - Use `git mv` to preserve history
-   - Commit the move before merging PR
+6. **Before PR creation (Phase 6):**
+   - `git rm -r --cached .claude/tickets/[TICKET-ID]/` (untrack files)
+   - Files stay on disk during PR review for reference
+7. **After PR merged (Phase 9):**
+   - `rm -rf .claude/tickets/[TICKET-ID]/` (delete session directory)
 
 **For Fresh Session Resuming Work:**
 
@@ -639,9 +663,10 @@ Ready to start next ticket or end session.
 
 ---
 
-**Template Version:** 1.1
-**Last Updated:** November 5, 2025
-**Template Location:** `.claude/templates/session-tracking-template.md`
+**Template Version:** 2.0
+**Last Updated:** December 31, 2025
+**Template Location:** `${CLAUDE_PLUGIN_ROOT}/templates/session-tracking-template.md`
 **Changelog:**
+- v2.0 (2025-12-31): Moved session location to `.claude/tickets/[TICKET-ID]/`, added scratch pad integration, updated cleanup process
 - v1.1 (2025-11-05): Added Phase 7 Post-Merge Cleanup section with systematic checklist
 - v1.0 (2025-11-03): Initial template creation
