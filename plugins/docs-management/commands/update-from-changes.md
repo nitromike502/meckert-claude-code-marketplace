@@ -1,6 +1,7 @@
 ---
 name: docs-management:update-from-changes
 description: Review recent git commits and update project documentation based on new features, bug fixes, or changes. Automatically determines which doc types need updating.
+argument-hint: "[scope]"
 allowed-tools: Task, Skill
 ---
 

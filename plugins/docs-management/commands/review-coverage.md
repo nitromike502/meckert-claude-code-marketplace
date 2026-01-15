@@ -1,6 +1,7 @@
 ---
 name: docs-management:review-coverage
 description: Audit current project documentation to identify gaps, outdated content, and areas needing improvement. Provides a coverage report with recommendations.
+argument-hint: "[focus area]"
 allowed-tools: Task, Skill
 ---
 

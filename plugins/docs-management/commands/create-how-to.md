@@ -1,6 +1,7 @@
 ---
 name: docs-management:create-how-to
 description: Create task-oriented how-to guide documentation following the Diataxis framework. How-to guides help users accomplish specific goals.
+argument-hint: "[task]"
 allowed-tools: Task, Skill
 ---
 

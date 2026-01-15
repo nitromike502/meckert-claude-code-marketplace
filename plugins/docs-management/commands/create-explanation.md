@@ -1,6 +1,7 @@
 ---
 name: docs-management:create-explanation
 description: Create understanding-oriented explanation documentation following the Diataxis framework. Explanations clarify concepts, architecture, and design decisions.
+argument-hint: "[topic]"
 allowed-tools: Task, Skill
 ---
 

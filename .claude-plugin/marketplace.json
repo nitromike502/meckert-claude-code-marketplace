@@ -30,14 +30,6 @@
       "tags": ["validation", "frontmatter", "plugin-dev", "agents", "commands"]
     },
     {
-      "name": "project-toolkit",
-      "version": "1.0.0-beta.2",
-      "description": "Multi-agent development workflow toolkit with SWARM methodology for coordinated software development",
-      "source": "./plugins/project-toolkit",
-      "category": "workflow",
-      "tags": ["swarm", "multi-agent", "workflow", "development", "testing", "code-review", "git", "project-management"]
-    },
-    {
       "name": "dev-toolkit",
       "version": "1.0.0-beta.3",
       "description": "Multi-agent development workflow toolkit with SWARM methodology for coordinated software development",
@@ -47,7 +39,7 @@
     },
     {
       "name": "docs-management",
-      "version": "1.0.0-beta.4",
+      "version": "1.0.0-beta.6",
       "description": "Documentation management plugin with Diataxis framework support. Create, organize, and maintain project documentation following industry standards.",
       "source": "./plugins/docs-management",
       "category": "documentation",
