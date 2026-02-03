@@ -1,5 +1,5 @@
 {
-  "name": "local-marketplace",
+  "name": "meckert-marketplace",
   "owner": {
     "name": "Mike Eckert",
     "email": "nitromike502@gmail.com"
@@ -39,7 +39,7 @@
     },
     {
       "name": "docs-management",
-      "version": "1.0.0-beta.6",
+      "version": "1.0.0",
       "description": "Documentation management plugin with Diataxis framework support. Create, organize, and maintain project documentation following industry standards.",
       "source": "./plugins/docs-management",
       "category": "documentation",
